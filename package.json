@@ -1,0 +1,47 @@
+{
+  "name": "wcloner",
+  "version": "0.3.1",
+  "engine" : "node >= 5.0.0",
+  "description": "Collection of routines for cloning",
+  "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
+  "contributors": [
+    {
+      "name": "Kostiantyn Wandalen",
+      "email": "wtory.net@domainsbyproxy.com>"
+    }
+  ],
+  "license": "MIT",
+  "main": "staging/abase/component/Cloner.s",
+  "files": [
+    "staging/abase",
+    "production"
+  ],
+  "directories": {
+    "doc": "doc",
+    "main": "staging/abase/component/Cloner.s"
+  },
+  "scripts": {
+    "test": "wtest staging",
+    "make_doc": "x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wCloner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wandalen/wCloner/issues"
+  },
+  "dependencies": {
+    "wTools": ""
+  },
+  "devDependencies": {
+    "wTesting": "",
+    "wcloner": ""
+  },
+  "keywords": [
+    "wTools",
+    "clone",
+    "cloner",
+    "deep clone"
+  ]
+}
