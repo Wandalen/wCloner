@@ -179,7 +179,7 @@ var Self =
   tests :
   {
 
-    // checker : checker,
+    checker : checker,
     simplest : simplest,
 
   }

@@ -364,6 +364,9 @@ function _cloneMap( iteration,iterator )
     newIteration.key = key;
     newIteration.path = iteration.path + '.' + key;
 
+    // if( key === 'elements' && newIteration.src )
+    // debugger;
+
     iteration.dst[ key ] = _cloneAct( newIteration,iterator );
   }
 
@@ -524,7 +527,7 @@ function _cloneAct( iteration,iterator )
   var r;
   var objectLike = _.objectLike( iteration.src );
   var arrayLike = _.arrayLike( iteration.src );
-  var bufferIs = _.bufferAnyIs( iteration.src );
+  var bufferTypedIs = _.bufferAnyIs( iteration.src );
 
   if( ( arrayLike && objectLike ) )
   {
@@ -592,7 +595,7 @@ function _cloneAct( iteration,iterator )
 
   /* array like */
 
-  if( arrayLike && !bufferIs )
+  if( arrayLike && !bufferTypedIs )
   {
     handled = 1;
     _._cloneArray( iteration,iterator );
@@ -600,7 +603,7 @@ function _cloneAct( iteration,iterator )
 
   /* buffer like */
 
-  if( bufferIs )
+  if( bufferTypedIs )
   {
     handled = 1;
     _._cloneBuffer( iteration,iterator );
