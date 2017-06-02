@@ -414,7 +414,7 @@ function _cloneBuffer( iteration,iterator )
 
   if( degree >= 2 )
   {
-    iteration.dst = _._arrayCopy( iteration.src );
+    iteration.dst = _._arrayClone( iteration.src );
   }
   else
   {
@@ -485,7 +485,7 @@ function _cloneArray( iteration,iterator )
   }
   else
   {
-    iteration.dst = _.arrayNew( iteration.src );
+    iteration.dst = _.arrayMakeSimilar( iteration.src );
   }
 
   /* */
