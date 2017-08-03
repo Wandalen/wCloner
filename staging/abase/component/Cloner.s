@@ -436,7 +436,6 @@ function _cloneBuffer( iteration,iterator )
 
   if( iterator.onBuffer )
   {
-    debugger;
     var r = iterator.onBuffer( iteration.dst,iteration,iterator );
     _.assert( r === undefined );
   }
@@ -819,14 +818,12 @@ function cloneDataSeparatingBuffers( o )
   if( o.rootSrc === undefined )
   o.rootSrc = o.src;
 
-  _.routineOptions( cloneDataSeparatingBuffers,o ); debugger;
+  _.routineOptions( cloneDataSeparatingBuffers,o );
 
   /* onBuffer */
 
   o.onBuffer = function onBuffer( srcBuffer,iteration,iterator )
   {
-
-    debugger;
 
     logger.log( 'buffer',iteration.path );
 
@@ -889,8 +886,6 @@ function cloneDataSeparatingBuffers( o )
     offset += bufferSize;
 
   }
-
-  debugger;
 
   return result;
 }
