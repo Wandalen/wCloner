@@ -190,6 +190,7 @@ function _cloneOptions( routine,o )
   iterator.copyingAggregates = o.copyingAggregates;
   iterator.copyingAssociates = o.copyingAssociates;
   iterator.copyingRestricts = o.copyingRestricts;
+  iterator.copyingMedials = o.copyingMedials;
   iterator.copyingBuffers = o.copyingBuffers;
   iterator.copyingCustomFields = o.copyingCustomFields;
 
@@ -228,6 +229,7 @@ _cloneOptions.defaults =
   copyingComposes : 3,
   copyingAggregates : 1,
   copyingAssociates : 1,
+  copyingMedials : 1,
   copyingRestricts : 0,
   copyingBuffers : 3,
   copyingCustomFields : 0,
