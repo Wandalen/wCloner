@@ -175,6 +175,7 @@ var Self =
 {
 
   name : 'wTools.cloner',
+  silencing : 1,
 
   tests :
   {

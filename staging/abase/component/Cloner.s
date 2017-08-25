@@ -137,10 +137,10 @@ function _cloneIteration( iteration,isRoot )
   var result = Object.create( null );
 
   _.assert( arguments.length === 1 || arguments.length === 2 );
-  _.assert( _.numberIs( iteration.copyDegree ) );
+  _.assert( _.numberIs( iteration.copyingDegree ) );
 
   result.level = iteration.level;
-  result.copyDegree = iteration.copyDegree;
+  result.copyingDegree = iteration.copyingDegree;
 
   if( isRoot )
   result.iterationPrev = null;
@@ -148,8 +148,8 @@ function _cloneIteration( iteration,isRoot )
   result.iterationPrev = iteration;
 
   if( !isRoot )
-  if( result.copyDegree === 2 )
-  result.copyDegree -= 1;
+  if( result.copyingDegree === 2 )
+  result.copyingDegree -= 1;
 
   return result;
 }
@@ -160,8 +160,13 @@ function _cloneOptions( routine,o )
 {
   var routine = routine || _cloneOptions;
 
+  if( o.copyingMedials === undefined )
+  o.copyingMedials = _.instanceIsStandard( o.src ) ? 0 : 1;
+
   _.assert( arguments.length === 2 );
   _.routineOptions( routine,o );
+  _.assertMapHasNoUndefine( o );
+  _.assert( _.objectIs( o ) );
 
   /* */
 
@@ -179,12 +184,12 @@ function _cloneOptions( routine,o )
   iteration.screenFields = o.screenFields;
 
   iteration.instanceAsMap = o.instanceAsMap;
-  iteration.copyDegree = o.copyDegree;
+  iteration.copyingDegree = o.copyingDegree;
 
   /* */
 
   var iterator = _cloneIterator();
-  iterator.rootSrc = o.rootSrc;
+  iterator.rootSrc = o.rootSrc || o.src;
 
   iterator.copyingComposes = o.copyingComposes;
   iterator.copyingAggregates = o.copyingAggregates;
@@ -224,7 +229,8 @@ _cloneOptions.defaults =
   dropFields : null,
   screenFields : null,
   instanceAsMap : 0,
-  copyDegree : 3,
+
+  copyingDegree : 3,
 
   copyingComposes : 3,
   copyingAggregates : 1,
@@ -286,7 +292,7 @@ function _cloneMap( iteration,iterator )
 {
   var result;
 
-  _.assert( iteration.copyDegree >= 1 );
+  _.assert( iteration.copyingDegree >= 1 );
   _.assert( arguments.length === 2 );
   _.assert( _.objectLike( iteration.src ) );
 
@@ -302,7 +308,7 @@ function _cloneMap( iteration,iterator )
 
   /* low copy degree */
 
-  if( iteration.copyDegree === 1 )
+  if( iteration.copyingDegree === 1 )
   return iteration.dst = iteration.src;
 
   /* map */
@@ -337,7 +343,7 @@ function _cloneMap( iteration,iterator )
 
   var screen = iteration.screenFields ? iteration.screenFields : iteration.src;
 
-  if( iteration.copyDegree )
+  if( iteration.copyingDegree )
   for( var key in screen )
   {
 
@@ -346,9 +352,6 @@ function _cloneMap( iteration,iterator )
 
     if( iteration.src[ key ] === undefined )
     continue;
-
-    // if( !( key in iteration.src ) )
-    // continue;
 
     if( iteration.dropFields )
     if( iteration.dropFields[ key ] !== undefined )
@@ -365,9 +368,6 @@ function _cloneMap( iteration,iterator )
     newIteration.src = iteration.src[ key ];
     newIteration.key = key;
     newIteration.path = iteration.path + '.' + key;
-
-    // if( key === 'elements' && newIteration.src )
-    // debugger;
 
     iteration.dst[ key ] = _cloneAct( newIteration,iterator );
   }
@@ -390,9 +390,9 @@ function _cloneMap( iteration,iterator )
 function _cloneBuffer( iteration,iterator )
 {
   var handled = 0;
-  var degree = Math.min( iterator.copyingBuffers,iteration.copyDegree );
+  var degree = Math.min( iterator.copyingBuffers,iteration.copyingDegree );
 
-  _.assert( iteration.copyDegree >= 1,'not tested' );
+  _.assert( iteration.copyingDegree >= 1,'not tested' );
   _.assert( !_.bufferNodeIs( iteration.src ),'not tested' );
 
   _.assert( arguments.length === 2 );
@@ -455,7 +455,7 @@ function _cloneBuffer( iteration,iterator )
 function _cloneArray( iteration,iterator )
 {
 
-  _.assert( iteration.copyDegree >= 1 );
+  _.assert( iteration.copyingDegree >= 1 );
   _.assert( arguments.length === 2 );
   _.assert( _.arrayLike( iteration.src ) );
   _.assert( !_.bufferAnyIs( iteration.src ) );
@@ -472,7 +472,7 @@ function _cloneArray( iteration,iterator )
 
   /* low copy degree */
 
-  if( iteration.copyDegree === 1 )
+  if( iteration.copyingDegree === 1 )
   return iteration.dst = iteration.src;
 
   /* */
@@ -497,7 +497,7 @@ function _cloneArray( iteration,iterator )
   if( _.bufferTypedIs( iteration.src ) )
   debugger;
 
-  if( iteration.copyDegree )
+  if( iteration.copyingDegree )
   for( var key = 0 ; key < iteration.src.length ; key++ )
   {
 
@@ -538,7 +538,7 @@ function _cloneAct( iteration,iterator )
 
   _.assert( arguments.length === 2 );
   _.assert( iteration.level >= 0 );
-  _.assert( iteration.copyDegree > 0 );
+  _.assert( iteration.copyingDegree > 0 );
   _.assert( _.strIs( iteration.path ) );
   _.assert( !( arrayLike && objectLike ) );
 
@@ -562,7 +562,7 @@ function _cloneAct( iteration,iterator )
 
   /* class instance */
 
-  if( iteration.copyDegree > 1 && iteration.src )
+  if( iteration.copyingDegree > 1 && iteration.src )
   if( iterator.technique === 'data' )
   {
     if( iteration.src.cloneData )
@@ -647,7 +647,7 @@ function _cloneAct( iteration,iterator )
 
   /* */
 
-  if( !handled && iteration.copyDegree > 1 )
+  if( !handled && iteration.copyingDegree > 1 )
   {
     debugger;
     throw _.err( 'unknown type of src : ' + _.strTypeOf( iteration.src ) );
