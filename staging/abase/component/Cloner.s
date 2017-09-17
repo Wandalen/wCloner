@@ -7,7 +7,7 @@ if( typeof module !== 'undefined' )
 
   try
   {
-    require( '../wTools.s' );
+    require( '../../Base.s' );
   }
   catch( err )
   {
@@ -336,7 +336,7 @@ function _cloneMap( iteration,iterator )
   iteration.dst = new iteration.proto();
   else
   {
-    iteration.dst = _.entityNew( iteration.src );
+    iteration.dst = _.entityMake( iteration.src );
   }
 
   /* */
@@ -368,6 +368,9 @@ function _cloneMap( iteration,iterator )
     newIteration.src = iteration.src[ key ];
     newIteration.key = key;
     newIteration.path = iteration.path + '.' + key;
+
+    // debugger;
+    _.assert( ( key in iteration.dst ) || Object.isExtensible( iteration.dst ) );
 
     iteration.dst[ key ] = _cloneAct( newIteration,iterator );
   }
@@ -525,12 +528,14 @@ function _cloneArray( iteration,iterator )
 function _cloneAct( iteration,iterator )
 {
   var handled = 0;
-  var r;
   var objectLike = _.objectLike( iteration.src );
   var arrayLike = _.arrayLike( iteration.src );
   var bufferTypedIs = _.bufferAnyIs( iteration.src );
 
-  if( ( arrayLike && objectLike ) )
+  // if( iteration.key === 'attributes' || iteration.key === 'aOpacity' )
+  // debugger;
+
+  if( arrayLike && objectLike )
   {
     debugger;
     _.objectLike( iteration.src );
@@ -937,8 +942,6 @@ _.mapExtend( Self, Proto );
 // --
 
 if( typeof module !== 'undefined' && module !== null )
-{
-  module[ 'exports' ] = Self;
-}
+module[ 'exports' ] = Self;
 
 })();

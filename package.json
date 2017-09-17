@@ -11,14 +11,14 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/abase/component/Cloner.s",
+  "main": "staging/dwtools/abase/component/Cloner.s",
   "files": [
-    "staging/abase",
+    "staging/dwtools/abase",
     "production"
   ],
   "directories": {
     "doc": "doc",
-    "main": "staging/abase/component/Cloner.s"
+    "main": "staging/dwtools/abase/component/Cloner.s"
   },
   "scripts": {
     "test": "wtest staging",

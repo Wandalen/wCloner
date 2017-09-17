@@ -7,7 +7,7 @@ if( typeof module !== 'undefined' )
 
   try
   {
-    require( '../../abase/wTools.s' );
+    require( '../../Base.s' );
   }
   catch( err )
   {
@@ -16,7 +16,7 @@ if( typeof module !== 'undefined' )
 
   var _ = wTools;
 
-  require( '../component/Cloner.s' );
+  require( '../layer3/Cloner.s' );
 
   _.include( 'wTesting' );
 
