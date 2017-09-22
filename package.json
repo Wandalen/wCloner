@@ -13,7 +13,7 @@
   "license": "MIT",
   "main": "staging/dwtools/abase/component/Cloner.s",
   "files": [
-    "staging/dwtools/abase",
+    "staging/dwtools/abase/component",
     "production"
   ],
   "directories": {
