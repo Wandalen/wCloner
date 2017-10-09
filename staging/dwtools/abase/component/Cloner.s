@@ -201,6 +201,7 @@ function _cloneOptions( routine,o )
 
   iterator.levels = o.levels;
   iterator.technique = o.technique;
+  iterator.deserializing = o.deserializing;
 
   iterator.onString = o.onString;
   iterator.onRoutine = o.onRoutine;
@@ -243,6 +244,7 @@ _cloneOptions.defaults =
   rootSrc : null,
   levels : 999,
   technique : null,
+  deserializing : 0,
 
   onString : null,
   onRoutine : null,
@@ -370,9 +372,42 @@ function _cloneMap( iteration,iterator )
     newIteration.path = iteration.path + '.' + key;
 
     // debugger;
-    _.assert( ( key in iteration.dst ) || Object.isExtensible( iteration.dst ) );
+    if( Config.debug )
+    {
+      var errd = 'Object does not have ' + key;
+      _.assert( ( key in iteration.dst ) || Object.isExtensible( iteration.dst ),errd );
+    }
 
-    iteration.dst[ key ] = _cloneAct( newIteration,iterator );
+    // if( typeof w4GeometryLine !== 'undefined' )
+    // if( iterator.rootSrc instanceof w4GeometryLine || iteration.xxx )
+    // console.log( 'key',key );
+
+    var cloningWithSetter = 0;
+    if( !iterator.deserializing && newIteration.copyingDegree > 1 && iteration.dst._Accessors && iteration.dst._Accessors[ key ] )
+    {
+      _.assert( newIteration.copyingDegree > 0,'not expected' );
+      newIteration.copyingDegree = 1;
+      cloningWithSetter = 1;
+      // if( key === 'includeSubsetBoxOnly' && newIteration.src )
+      // debugger;
+    }
+
+    var val = _cloneAct( newIteration,iterator );
+    iteration.dst[ key ] = val;
+
+    if( cloningWithSetter )
+    {
+      // if( key === 'includeSubsetBoxOnly' && newIteration.src )
+      // debugger;
+      var errd = 'Component setter "' + key + '" of object "' + iteration.dst.constructor.name + '" didn\'t clone data, but had to.';
+      _.assert( _.atomicIs( newIteration.src ) || iteration.dst[ key ] !== newIteration.src, errd );
+    }
+
+    // if( typeof w4GeometryLine !== 'undefined' )
+    // if( iterator.rootSrc instanceof w4GeometryLine )
+    // if( iterator.xxx && iteration.xxx && newIteration.xxx )
+    // console.log( 'key',key );
+
   }
 
   /* container down */
@@ -671,7 +706,7 @@ function _clone( o )
 
   if( o.src === undefined )
   {
-    console.warn( 'REMINDER:','experimental' );
+    console.debug( 'REMINDER:','experimental' );
     debugger;
     /* o.src = null; */
   }
@@ -832,7 +867,7 @@ function cloneDataSeparatingBuffers( o )
   o.onBuffer = function onBuffer( srcBuffer,iteration,iterator )
   {
 
-    logger.log( 'buffer',iteration.path );
+    // logger.log( 'buffer',iteration.path );
 
     _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
 
