@@ -13,9 +13,16 @@
   "license": "MIT",
   "main": "staging/dwtools/abase/layer3/Cloner.s",
   "files": [
-    "staging/dwtools/abase",
+    "staging/dwtools/abase/layer3",
     "production"
   ],
+<<<<<<< HEAD
+=======
+  "directories": {
+    "doc": "doc",
+    "main": "staging/dwtools/abase/layer3/Cloner.s"
+  },
+>>>>>>> 8565ed324e7528ba40ae5ed9a0257e9410e3a3b5
   "scripts": {
     "test": "wtest staging",
     "make_doc": "x"
