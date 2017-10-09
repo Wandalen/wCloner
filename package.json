@@ -11,14 +11,14 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/dwtools/abase/component/Cloner.s",
+  "main": "staging/dwtools/abase/layer3/Cloner.s",
   "files": [
-    "staging/dwtools/abase",
+    "staging/dwtools/abase/layer3",
     "production"
   ],
   "directories": {
     "doc": "doc",
-    "main": "staging/dwtools/abase/component/Cloner.s"
+    "main": "staging/dwtools/abase/layer3/Cloner.s"
   },
   "scripts": {
     "test": "wtest staging",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "wTesting": "",
-    "wcloner": ""
+    "wcloner": "."
   },
   "keywords": [
     "wTools",
