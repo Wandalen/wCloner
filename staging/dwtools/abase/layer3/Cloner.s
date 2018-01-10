@@ -392,7 +392,17 @@ function _cloneMap( iteration,iterator )
       // debugger;
     }
 
+    // if( key === 'includeColorRangeOnly' && val && cloningWithSetter )
+    // debugger;
+
     var val = _cloneAct( newIteration,iterator );
+
+    // if( key === 'includeColorRangeOnly' && val && cloningWithSetter )
+    // debugger;
+
+    // if( key === 'dependsOf' )
+    // debugger;
+
     iteration.dst[ key ] = val;
 
     if( cloningWithSetter )
@@ -712,6 +722,9 @@ function _clone( o )
   }
 
   var r = _cloneOptions( _clone,o );
+
+  _.assert( !r.iterator.src || r.iterator.rootSrc );
+
   return _cloneAct( r.iteration,r.iterator );
 }
 
@@ -828,10 +841,11 @@ cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
 function cloneData( o )
 {
 
-  if( o.rootSrc === undefined )
-  o.rootSrc = o.src;
+  // if( o.rootSrc === undefined )
+  // o.rootSrc = o.src;
 
   _.routineOptions( cloneData,o );
+  // _.assert( !o.src || o.rootSrc );
 
   var result = _clone( o );
 
@@ -857,10 +871,11 @@ function cloneDataSeparatingBuffers( o )
   var size = 0;
   var offset = 0;
 
-  if( o.rootSrc === undefined )
-  o.rootSrc = o.src;
+  // if( o.rootSrc === undefined )
+  // o.rootSrc = o.src;
 
   _.routineOptions( cloneDataSeparatingBuffers,o );
+  _.assert( arguments.length === 1 );
 
   /* onBuffer */
 
