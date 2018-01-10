@@ -1,6 +1,6 @@
 {
   "name": "wcloner",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "engine": "node >= 6.0.0",
   "description": "Collection of routines for cloning",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
