@@ -5,121 +5,32 @@
 if( typeof module !== 'undefined' )
 {
 
-  try
+  if( typeof _global_ === 'undefined' || !_global_.wBase )
   {
-    require( '../../Base.s' );
-  }
-  catch( err )
-  {
-    require( 'wTools' );
+    let toolsPath = '../../../dwtools/Base.s';
+    let toolsExternal = 0;
+    try
+    {
+      require.resolve( toolsPath )/*hhh*/;
+    }
+    catch( err )
+    {
+      toolsExternal = 1;
+      require( 'wTools' );
+    }
+    if( !toolsExternal )
+    require( toolsPath )/*hhh*/;
   }
 
 }
 
-var Self = wTools;
-var _ = wTools;
+var Self = _global_.wTools;
+var _ = _global_.wTools;
 var _ObjectHasOwnProperty = Object.hasOwnProperty;
 
 // --
 // routines
 // --
-
-// function cloneDeep_deprecated( src,options )
-// {
-//   var result;
-//
-//   if( options !== undefined && !_.objectIs( options ) )
-//   throw _.err( 'wTools.cloneDeep_deprecated :','need options' );
-//
-//   var options = options || Object.create( null );
-//
-//   if( options.forWorker === undefined ) options.forWorker = 0;
-//
-//   if( options.depth === undefined ) options.depth = 16;
-//
-//   if( options.useClone === undefined ) options.useClone = 1;
-//
-//   if( options.depth < 0 )
-//   {
-//     if( options.silent ) console.log( 'wTools.cloneDeep_deprecated : overflow' );
-//     else throw _.err( 'wTools.cloneDeep_deprecated :','overflow' );
-//   }
-//
-//   _.assert( !options.forWorker,'forWorker is deprecated' );
-//
-//   /* */
-//
-//   if( !src ) return src;
-//
-//   if( options.useClone && _.routineIs( src.clone ) )
-//   {
-//     result = src.clone();
-//   }
-//   else if( _.arrayIs( src ) )
-//   {
-//
-//     result = [];
-//     src.forEach(function( child, index, array ) {
-//       result[index] = cloneDeep_deprecated( child,options );
-//     });
-//
-//   }
-//   else if( _.objectIs( src ) )
-//   {
-//
-//     result = Object.create( null );
-//     var proto = Object.getPrototypeOf( src );
-//     var result = Object.create( proto );
-//     for( var s in src )
-//     {
-//       if( !_ObjectHasOwnProperty.call( src,s ) )
-//       continue;
-//       var c = cloneDeep_deprecated( src[ s ],{
-//         depth : options.depth-1,
-//         silent :options.silent,
-//         forWorker : options.forWorker,
-//       });
-//       result[s] = c;
-//     }
-//
-//   }
-//   else if( src.constructor )
-//   {
-//
-//     if( options.forWorker )
-//     {
-//       var good = _.strIs( src ) || _.numberIs( src ) || _.dateIs( src ) || _.boolIs( src ) || _.regexpIs( src ) || _.bufferTypedIs( src );
-//       if( good )
-//       {
-//         return src;
-//       }
-//       else
-//       {
-//         return;
-//       }
-//     }
-//     else
-//     {
-//       if( _.strIs( src ) || _.numberIs( src ) || _.dateIs( src ) || _.boolIs( src ) || _.regexpIs( src ) )
-//       result = src.constructor( src );
-//       else if( _.routineIs( src ) )
-//       result = src;
-//       else
-//       result = new src.constructor( src );
-//     }
-//
-//   }
-//   else
-//   {
-//
-//     result = src;
-//
-//   }
-//
-//   return result;
-// }
-
-//
 
 function _cloneIterator()
 {
@@ -990,6 +901,10 @@ _.mapExtend( Self, Proto );
 // --
 // export
 // --
+
+if( typeof module !== 'undefined' )
+if( _global_._UsingWtoolsPrivately_ )
+delete require.cache[ module.id ];
 
 if( typeof module !== 'undefined' && module !== null )
 module[ 'exports' ] = Self;
