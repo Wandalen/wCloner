@@ -24,7 +24,7 @@ if( typeof module !== 'undefined' )
 
   var _ = _global_.wTools;
 
-  require( '../layer3/Cloner.s' );
+  require( '../layer4/Cloner.s' );
 
   _.include( 'wTesting' );
 
