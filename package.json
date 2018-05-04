@@ -11,9 +11,9 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/dwtools/abase/layer3/Cloner.s",
+  "main": "staging/dwtools/abase/layer4/Cloner.s",
   "files": [
-    "staging/dwtools/abase/layer3",
+    "staging/dwtools/abase/layer4",
     "production"
   ],
   "scripts": {
