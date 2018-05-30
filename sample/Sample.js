@@ -1,10 +1,8 @@
 
 if( typeof module !== 'undefined' )
-{
-  require( 'wCloner' );
-}
-
+require( 'wcloner' );
 var _ = wTools;
+
 var arr1 = [ 1,2,5,9 ];
 var arr2 = _.cloneJust( arr1 );
 

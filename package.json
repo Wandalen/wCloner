@@ -28,7 +28,8 @@
     "url": "https://github.com/Wandalen/wCloner/issues"
   },
   "dependencies": {
-    "wTools": ""
+    "wTools": "",
+    "wtraverser": ""
   },
   "devDependencies": {
     "wTesting": "",

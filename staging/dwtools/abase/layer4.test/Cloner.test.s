@@ -1,6 +1,6 @@
 ( function _Cloner_test_s_( ) {
 
-'use strict';
+'use strict'; /*bbb*/
 
 if( typeof module !== 'undefined' )
 {
