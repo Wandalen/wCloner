@@ -102,18 +102,18 @@ function checker( t )
 
 //
 
-function simplest( t )
+function trivial( t )
 {
 
-  t.description = 'cloning String';
-  var src = 'abc';
-  var dst = _.cloneJust( src );
-  t.identical( dst,src );
-
-  t.description = 'cloning Number';
-  var src = 13;
-  var dst = _.cloneJust( src );
-  t.identical( dst,src );
+  // t.description = 'cloning String';
+  // var src = 'abc';
+  // var dst = _.cloneJust( src );
+  // t.identical( dst,src );
+  //
+  // t.description = 'cloning Number';
+  // var src = 13;
+  // var dst = _.cloneJust( src );
+  // t.identical( dst,src );
 
   t.description = 'cloning ArrayBuffer';
   var src = new ArrayBuffer( 10 );
@@ -189,7 +189,7 @@ var Self =
   {
 
     checker : checker,
-    simplest : simplest,
+    trivial : trivial,
 
   }
 

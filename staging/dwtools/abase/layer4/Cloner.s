@@ -37,156 +37,168 @@ _.assert( _._traverser );
 // routines
 // --
 
-function _cloneMapUp( iteration )
+function _cloneMapUp( it )
 {
-  var iterator = iteration.iterator;
 
   _.assert( arguments.length === 1 );
 
   /* low copy degree */
 
-  if( iteration.copyingDegree === 1 )
+  if( it.copyingDegree === 1 )
   {
-    iteration.dst = iteration.src;
+    it.dst = it.src;
     return false;
   }
 
   /* map */
 
-  var mapLike = _.mapLike( iteration.src ) || iteration.instanceAsMap;
+  var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
 
-  // if( _.construction.is( iteration.src ) )
-  // debugger;
-
-  if( !mapLike && !_.construction.is( iteration.src ) )
+  if( !mapLike && !_.construction.is( it.src ) )
   {
     debugger;
     throw _.err
     (
       'Complex objets should have ' +
-      ( iterator.technique === 'data' ? 'traverseData' : 'traverseObject' ) +
-      ', but object ' + _.strTypeOf( iteration.src ) + ' at ' + ( iteration.path || '.' ), 'does not have such method','\n',
-      iteration.src,'\n',
+      ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' ) +
+      ', but object ' + _.strTypeOf( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method','\n',
+      it.src,'\n',
       'try to mixin wCopyable'
     );
   }
 
   /* */
 
-  if( iteration.dst )
-  {}
-  else if( iteration.proto )
+  if( it.dst )
+  {
+  }
+  else if( it.proto )
   {
     debugger;
-    iteration.dst = new iteration.proto.constructor();
+    it.dst = new it.proto.constructor();
   }
   else
   {
-    iteration.dst = _.entityMake( iteration.src );
+    it.dst = _.entityMake( it.src );
   }
 
 }
 
 //
 
-function _cloneMapEntryUp( iteration,newIteration )
+function _cloneMapElementUp( it,eit )
 {
-  var iterator = iteration.iterator;
-  var key = newIteration.key;
+  var key = eit.key;
 
   _.assert( arguments.length === 2 );
-  _.assert( iteration.iterator === newIteration.iterator );
-  _.assert( iteration.copyingDegree > 1 );
+  _.assert( it.iterator === eit.iterator );
+  _.assert( it.copyingDegree > 1 );
 
   if( Config.debug )
   {
     var errd = 'Object does not have ' + key;
-    _.assert( ( key in iteration.dst ) || Object.isExtensible( iteration.dst ),errd );
+    _.assert( ( key in it.dst ) || Object.isExtensible( it.dst ),errd );
   }
 
-  newIteration.cloningWithSetter = 0;
-  if( !iterator.deserializing && newIteration.copyingDegree > 1 && iteration.dst._Accessors && iteration.dst._Accessors[ key ] )
+  eit.cloningWithSetter = 0;
+  if( !it.iterator.deserializing && eit.copyingDegree > 1 && it.dst._Accessors && it.dst._Accessors[ key ] )
   {
-    _.assert( newIteration.copyingDegree > 0,'not expected' );
-    newIteration.copyingDegree = 1;
-    newIteration.cloningWithSetter = 1;
+    _.assert( eit.copyingDegree > 0,'not expected' );
+    eit.copyingDegree = 1;
+    eit.cloningWithSetter = 1;
   }
 
 }
 
 //
 
-function _cloneMapEntryDown( iteration,newIteration )
+function _cloneMapElementDown( it,eit )
 {
-  var iterator = iteration.iterator;
-  var key = newIteration.key;
-  var val = newIteration.dst;
+  var key = eit.key;
+  var val = eit.dst;
 
   _.assert( arguments.length === 2 );
-  _.assert( iteration.iterator === newIteration.iterator );
+  _.assert( it.iterator === eit.iterator );
 
-  iteration.dst[ key ] = val;
+  it.dst[ key ] = val;
 
-  if( newIteration.cloningWithSetter )
+  if( eit.cloningWithSetter )
   {
-    var errd = 'Component setter "' + key + '" of object "' + iteration.dst.constructor.name + '" didn\'t copy data, but had to.';
-    if( !( _.atomicIs( newIteration.src ) || iteration.dst[ key ] !== newIteration.src ) )
+    var errd = 'Component setter "' + key + '" of object "' + it.dst.constructor.name + '" didn\'t copy data, but had to.';
+    if( !( _.primitiveIs( eit.src ) || it.dst[ key ] !== eit.src ) )
     {
       debugger;
-      iteration.dst[ key ] = val;
+      it.dst[ key ] = val;
     }
-    _.assert( _.atomicIs( newIteration.src ) || iteration.dst[ key ] !== newIteration.src, errd );
+    _.assert( _.primitiveIs( eit.src ) || it.dst[ key ] !== eit.src, errd );
   }
 
 }
 
 //
 
-function _cloneArrayUp( iteration )
+function _cloneArrayUp( it )
 {
-  var iterator = iteration.iterator;
 
   _.assert( arguments.length === 1 );
-  _.assert( iteration.copyingDegree >= 1 );
+  _.assert( it.copyingDegree >= 1 );
 
   /* low copy degree */
 
-  if( iteration.copyingDegree === 1 )
+  if( it.copyingDegree === 1 )
   {
-    iteration.dst = iteration.src;
+    it.dst = it.src;
     return false;
   }
 
-  if( iteration.dst )
+  if( it.dst )
   {}
-  else if( iteration.proto )
+  else if( it.proto )
   {
     debugger;
-    iteration.dst = new iteration.proto( iteration.src.length );
+    it.dst = new it.proto( it.src.length );
   }
   else
   {
-    iteration.dst = _.arrayMakeSimilar( iteration.src );
+    it.dst = [];
+    // it.dst = _.arrayMakeSimilar( it.src );
   }
 
 }
 
 //
 
-function _cloneBufferUp( iteration )
+function _cloneArrayElementUp( it,eit )
 {
-  var iterator = iteration.iterator;
+  _.assert( arguments.length === 2 );
+}
 
-  _.assert( arguments.length === 1 );
-  _.assert( iteration.copyingDegree >= 1 );
+//
 
-  if( iteration.copyingDegree >= 2 )
+function _cloneArrayElementDown( it,eit )
+{
+
+  _.assert( arguments.length === 2 );
+
+  it.dst.push( eit.dst );
+
+}
+
+//
+
+function _cloneBufferUp( src,it )
+{
+
+  _.assert( arguments.length === 2 );
+  _.assert( it.copyingDegree >= 1 );
+
+  if( it.copyingDegree >= 2 )
   {
-    iteration.dst = _._arrayClone( iteration.src );
+    it.dst = _._arrayClone( it.src );
   }
   else
   {
-    iteration.dst = iteration.src;
+    it.dst = it.src;
   }
 
 }
@@ -202,11 +214,13 @@ function _cloner( routine,o )
 
   /* */
 
-  o.onMapUp = _._cloneMapUp;
-  o.onMapEntryUp = _._cloneMapEntryUp;
-  o.onMapEntryDown = _._cloneMapEntryDown;
-  o.onArrayUp = _._cloneArrayUp;
-  o.onBufferUp = _._cloneBufferUp;
+  o.onMapUp = [ _._cloneMapUp, o.onMapUp ];
+  o.onMapElementUp = [ _._cloneMapElementUp, o.onMapElementUp ];
+  o.onMapElementDown = [ _._cloneMapElementDown, o.onMapElementDown ];
+  o.onArrayUp = [ _._cloneArrayUp, o.onArrayUp ];
+  o.onArrayElementUp = [ _._cloneArrayElementUp, o.onArrayElementUp ];
+  o.onArrayElementDown = [ _._cloneArrayElementDown, o.onArrayElementDown ];
+  o.onBuffer = [ _._cloneBufferUp, o.onBuffer ];
 
   var result = _._traverser( routine,o );
 
@@ -214,24 +228,24 @@ function _cloner( routine,o )
 }
 
 _cloner.iterationDefaults = Object.create( _._traverser.iterationDefaults );
-_cloner.defaults = Object.create( _._traverser.defaults2 );
+_cloner.defaults = Object.create( _._traverser.defaults );
 
 //
 
-function _cloneAct( iteration,iterator )
+function _cloneAct( it )
 {
-  return _._traverseAct( iteration,iterator );
+  _.assert( arguments.length === 1 );
+  return _._traverseAct( it );
 }
 
 //
 
 function _clone( o )
 {
-  var r = _cloner( _clone,o );
-
-  _.assert( !r.iterator.src || r.iterator.rootSrc );
-
-  return _cloneAct( r,r.iterator );
+  var it = _cloner( _clone,o );
+  _.assert( !it.iterator.src || it.iterator.rootSrc );
+  _.assert( arguments.length === 1 );
+  return _cloneAct( it );
 }
 
 _clone.defaults = _cloner.defaults;
@@ -310,8 +324,10 @@ function cloneObjectMergingBuffers( o )
 
   /* onString */
 
-  optionsForCloneObject.onString = function onString( strString,iteration,iterator )
+  optionsForCloneObject.onString = function onString( strString,it )
   {
+
+    _.assert( arguments.length === 2 );
 
     var id = _.strUnjoin( strString,[ '--buffer-->',_.strUnjoin.any,'<--buffer--' ] )
 
@@ -327,25 +343,27 @@ function cloneObjectMergingBuffers( o )
     var sizeOfAtom = descriptor[ 'sizeOfAtom' ];
     var result = bufferConstructor ? new bufferConstructor( buffer,offset,size / sizeOfAtom ) : null;
 
-    iteration.dst = result;
+    it.dst = result;
 
     return result;
   }
 
-  optionsForCloneObject.onInstanceCopy = function onInstanceCopy( iteration,iterator )
+  optionsForCloneObject.onInstanceCopy = function onInstanceCopy( src,it )
   {
 
-    var newIteration = iteration.iterationClone();
-    newIteration.dst = null;
-    newIteration.proto = null;
+    _.assert( arguments.length === 2 );
 
-    var technique = newIteration.iterator.technique;
-    newIteration.iterator.technique = 'data';
-    newIteration.usingInstanceCopy = 0;
-    _._cloneAct( newIteration,iterator );
-    newIteration.iterator.technique = technique;
+    var newIt = it.iterationClone();
+    newIt.dst = null;
+    newIt.proto = null;
 
-    iteration.src = newIteration.dst;
+    var technique = newIt.iterator.technique;
+    newIt.iterator.technique = 'data';
+    newIt.usingInstanceCopy = 0;
+    _._cloneAct( newIt );
+    newIt.iterator.technique = technique;
+
+    it.src = newIt.dst;
 
   }
 
@@ -399,9 +417,10 @@ function cloneDataSeparatingBuffers( o )
 
   /* onBuffer */
 
-  o.onBuffer = function onBuffer( srcBuffer,iteration,iterator )
+  o.onBuffer = function onBuffer( srcBuffer,it )
   {
 
+    _.assert( arguments.length === 2 );
     _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
 
     var index = buffers.length;
@@ -422,7 +441,7 @@ function cloneDataSeparatingBuffers( o )
     descriptorsArray.push( descriptor );
     descriptorsMap[ id ] = descriptor;
 
-    iteration.dst = id;
+    it.dst = id;
 
   }
 
@@ -479,9 +498,11 @@ var Proto =
 {
 
   _cloneMapUp : _cloneMapUp,
-  _cloneMapEntryUp : _cloneMapEntryUp,
-  _cloneMapEntryDown : _cloneMapEntryDown,
+  _cloneMapElementUp : _cloneMapElementUp,
+  _cloneMapElementDown : _cloneMapElementDown,
   _cloneArrayUp : _cloneArrayUp,
+  _cloneArrayElementUp : _cloneArrayElementUp,
+  _cloneArrayElementDown : _cloneArrayElementDown,
   _cloneBufferUp : _cloneBufferUp,
 
   _cloner : _cloner,
