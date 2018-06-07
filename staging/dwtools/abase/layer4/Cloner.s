@@ -1,6 +1,6 @@
 ( function _Cloner_s_() {
 
-'use strict'; 
+'use strict';
 
 if( typeof module !== 'undefined' )
 {
@@ -11,7 +11,7 @@ if( typeof module !== 'undefined' )
     let toolsExternal = 0;
     try
     {
-      require.resolve( toolsPath );
+      toolsPath = require.resolve( toolsPath );/*hhh*/
     }
     catch( err )
     {
@@ -22,12 +22,13 @@ if( typeof module !== 'undefined' )
     require( toolsPath );
   }
 
-  var _ = _global_.wTools;
+  var _global = _global_; var _ = _global_.wTools;
   _.include( 'wTraverser' );
 
 }
 
 var Self = _global_.wTools;
+var _global = _global_;
 var _ = _global_.wTools;
 var _ObjectHasOwnProperty = Object.hasOwnProperty;
 
@@ -337,7 +338,7 @@ function cloneObjectMergingBuffers( o )
     var descriptor = descriptorsMap[ strString ];
     _.assert( descriptor !== undefined );
 
-    var bufferConstructor = _global_[ descriptor[ 'bufferConstructorName' ] ];
+    var bufferConstructor = _global[ descriptor[ 'bufferConstructorName' ] ];
     var offset = descriptor[ 'offset' ];
     var size = descriptor[ 'size' ];
     var sizeOfAtom = descriptor[ 'sizeOfAtom' ];
@@ -526,7 +527,7 @@ _.mapExtend( Self, Proto );
 // --
 
 if( typeof module !== 'undefined' )
-if( _global_._UsingWtoolsPrivately_ )
+if( _global_.WTOOLS_PRIVATE )
 delete require.cache[ module.id ];
 
 if( typeof module !== 'undefined' && module !== null )
