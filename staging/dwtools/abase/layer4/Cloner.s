@@ -91,7 +91,7 @@ function _cloneMapElementUp( it,eit )
 {
   var key = eit.key;
 
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
   _.assert( it.iterator === eit.iterator );
   _.assert( it.copyingDegree > 1 );
 
@@ -118,7 +118,7 @@ function _cloneMapElementDown( it,eit )
   var key = eit.key;
   var val = eit.dst;
 
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
   _.assert( it.iterator === eit.iterator );
 
   it.dst[ key ] = val;
@@ -171,7 +171,7 @@ function _cloneArrayUp( it )
 
 function _cloneArrayElementUp( it,eit )
 {
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
 }
 
 //
@@ -179,7 +179,7 @@ function _cloneArrayElementUp( it,eit )
 function _cloneArrayElementDown( it,eit )
 {
 
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
 
   it.dst.push( eit.dst );
 
@@ -190,7 +190,7 @@ function _cloneArrayElementDown( it,eit )
 function _cloneBufferUp( src,it )
 {
 
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
   _.assert( it.copyingDegree >= 1 );
 
   if( it.copyingDegree >= 2 )
@@ -210,7 +210,7 @@ function _cloner( routine,o )
 {
   var routine = routine || _cloner;
 
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
   _.routineOptions( routine,o );
 
   /* */
@@ -328,7 +328,7 @@ function cloneObjectMergingBuffers( o )
   optionsForCloneObject.onString = function onString( strString,it )
   {
 
-    _.assert( arguments.length === 2, 'expects exactly two argument' );
+    _.assert( arguments.length === 2, 'expects exactly two arguments' );
 
     var id = _.strUnjoin( strString,[ '--buffer-->',_.strUnjoin.any,'<--buffer--' ] )
 
@@ -352,7 +352,7 @@ function cloneObjectMergingBuffers( o )
   optionsForCloneObject.onInstanceCopy = function onInstanceCopy( src,it )
   {
 
-    _.assert( arguments.length === 2, 'expects exactly two argument' );
+    _.assert( arguments.length === 2, 'expects exactly two arguments' );
 
     var newIt = it.iterationClone();
     newIt.dst = null;
@@ -421,7 +421,7 @@ function cloneDataSeparatingBuffers( o )
   o.onBuffer = function onBuffer( srcBuffer,it )
   {
 
-    _.assert( arguments.length === 2, 'expects exactly two argument' );
+    _.assert( arguments.length === 2, 'expects exactly two arguments' );
     _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
 
     var index = buffers.length;
