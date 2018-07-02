@@ -41,7 +41,7 @@ _.assert( _._traverser );
 function _cloneMapUp( it )
 {
 
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 1, 'expects single argument' );
 
   /* low copy degree */
 
@@ -91,7 +91,7 @@ function _cloneMapElementUp( it,eit )
 {
   var key = eit.key;
 
-  _.assert( arguments.length === 2 );
+  _.assert( arguments.length === 2, 'expects exactly two argument' );
   _.assert( it.iterator === eit.iterator );
   _.assert( it.copyingDegree > 1 );
 
@@ -118,7 +118,7 @@ function _cloneMapElementDown( it,eit )
   var key = eit.key;
   var val = eit.dst;
 
-  _.assert( arguments.length === 2 );
+  _.assert( arguments.length === 2, 'expects exactly two argument' );
   _.assert( it.iterator === eit.iterator );
 
   it.dst[ key ] = val;
@@ -141,7 +141,7 @@ function _cloneMapElementDown( it,eit )
 function _cloneArrayUp( it )
 {
 
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 1, 'expects single argument' );
   _.assert( it.copyingDegree >= 1 );
 
   /* low copy degree */
@@ -171,7 +171,7 @@ function _cloneArrayUp( it )
 
 function _cloneArrayElementUp( it,eit )
 {
-  _.assert( arguments.length === 2 );
+  _.assert( arguments.length === 2, 'expects exactly two argument' );
 }
 
 //
@@ -179,7 +179,7 @@ function _cloneArrayElementUp( it,eit )
 function _cloneArrayElementDown( it,eit )
 {
 
-  _.assert( arguments.length === 2 );
+  _.assert( arguments.length === 2, 'expects exactly two argument' );
 
   it.dst.push( eit.dst );
 
@@ -190,7 +190,7 @@ function _cloneArrayElementDown( it,eit )
 function _cloneBufferUp( src,it )
 {
 
-  _.assert( arguments.length === 2 );
+  _.assert( arguments.length === 2, 'expects exactly two argument' );
   _.assert( it.copyingDegree >= 1 );
 
   if( it.copyingDegree >= 2 )
@@ -210,7 +210,7 @@ function _cloner( routine,o )
 {
   var routine = routine || _cloner;
 
-  _.assert( arguments.length === 2 );
+  _.assert( arguments.length === 2, 'expects exactly two argument' );
   _.routineOptions( routine,o );
 
   /* */
@@ -235,7 +235,7 @@ _cloner.defaults = Object.create( _._traverser.defaults );
 
 function _cloneAct( it )
 {
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 1, 'expects single argument' );
   return _._traverseAct( it );
 }
 
@@ -245,7 +245,7 @@ function _clone( o )
 {
   var it = _cloner( _clone,o );
   _.assert( !it.iterator.src || it.iterator.rootSrc );
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 1, 'expects single argument' );
   return _cloneAct( it );
 }
 
@@ -258,7 +258,7 @@ _clone.iterationDefaults = _cloner.iterationDefaults;
 
 function cloneJust( src )
 {
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 1, 'expects single argument' );
 
   var o = Object.create( null );
   o.src = src;
@@ -328,7 +328,7 @@ function cloneObjectMergingBuffers( o )
   optionsForCloneObject.onString = function onString( strString,it )
   {
 
-    _.assert( arguments.length === 2 );
+    _.assert( arguments.length === 2, 'expects exactly two argument' );
 
     var id = _.strUnjoin( strString,[ '--buffer-->',_.strUnjoin.any,'<--buffer--' ] )
 
@@ -352,7 +352,7 @@ function cloneObjectMergingBuffers( o )
   optionsForCloneObject.onInstanceCopy = function onInstanceCopy( src,it )
   {
 
-    _.assert( arguments.length === 2 );
+    _.assert( arguments.length === 2, 'expects exactly two argument' );
 
     var newIt = it.iterationClone();
     newIt.dst = null;
@@ -414,14 +414,14 @@ function cloneDataSeparatingBuffers( o )
   var offset = 0;
 
   _.routineOptions( cloneDataSeparatingBuffers,o );
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 1, 'expects single argument' );
 
   /* onBuffer */
 
   o.onBuffer = function onBuffer( srcBuffer,it )
   {
 
-    _.assert( arguments.length === 2 );
+    _.assert( arguments.length === 2, 'expects exactly two argument' );
     _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
 
     var index = buffers.length;
