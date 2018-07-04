@@ -320,7 +320,7 @@ function cloneObjectMergingBuffers( o )
 
   /* */
 
-  var optionsForCloneObject = _.mapScreen( _.cloneObject.defaults,o );
+  var optionsForCloneObject = _.mapOnly( o, _.cloneObject.defaults );
   optionsForCloneObject.src = data;
 
   /* onString */
