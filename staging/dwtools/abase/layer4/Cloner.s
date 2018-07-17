@@ -51,6 +51,15 @@ function _cloneMapUp( it )
     return false;
   }
 
+  /* copiers */
+
+  if( it.down && _.instanceIs( it.down.src ) && it.down.src.Copiers && it.down.src.Copiers[ it.key ] )
+  {
+    var copier = it.down.src.Copiers[ it.key ];
+    it.dst = copier.call( it.down.src, it );
+    return;
+  }
+
   /* map */
 
   var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
