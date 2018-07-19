@@ -171,7 +171,7 @@ function _cloneArrayUp( it )
   else
   {
     it.dst = [];
-    // it.dst = _.arrayMakeSimilar( it.src );
+    // it.dst = _.longMakeSimilar( it.src );
   }
 
 }
