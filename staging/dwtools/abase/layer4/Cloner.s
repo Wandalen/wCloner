@@ -53,12 +53,19 @@ function _cloneMapUp( it )
 
   /* copiers */
 
-  if( it.down && _.instanceIs( it.down.src ) && it.down.src.Copiers && it.down.src.Copiers[ it.key ] )
+  if( it.down && _.instanceIs( it.down.dst ) && it.down.dst.Copiers && it.down.dst.Copiers[ it.key ] )
+  {
+    var copier = it.down.dst.Copiers[ it.key ];
+    it.dst = copier.call( it.down.dst, it );
+    return;
+  }
+  else if( it.down && _.instanceIs( it.down.src ) && it.down.src.Copiers && it.down.src.Copiers[ it.key ] )
   {
     var copier = it.down.src.Copiers[ it.key ];
     it.dst = copier.call( it.down.src, it );
     return;
   }
+
 
   /* map */
 
