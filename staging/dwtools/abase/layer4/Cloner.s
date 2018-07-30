@@ -211,7 +211,7 @@ function _cloneBufferUp( src,it )
 
   if( it.copyingDegree >= 2 )
   {
-    it.dst = _._arrayClone( it.src );
+    it.dst = _._longClone( it.src );
   }
   else
   {
