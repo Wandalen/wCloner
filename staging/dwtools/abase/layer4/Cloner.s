@@ -260,7 +260,7 @@ function _cloneAct( it )
 function _clone( o )
 {
   var it = _cloner( _clone,o );
-  _.assert( !it.iterator.src || it.iterator.rootSrc );
+  _.assert( !it.iterator.src || !!it.iterator.rootSrc );
   _.assert( arguments.length === 1, 'expects single argument' );
   return _cloneAct( it );
 }
