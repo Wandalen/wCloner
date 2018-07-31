@@ -32,7 +32,7 @@ var _global = _global_;
 var _ = _global_.wTools;
 var _ObjectHasOwnProperty = Object.hasOwnProperty;
 
-_.assert( _._traverser );
+_.assert( !!_._traverser );
 
 // --
 // routines
