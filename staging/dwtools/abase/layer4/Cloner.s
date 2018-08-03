@@ -2,6 +2,14 @@
 
 'use strict';
 
+/**
+  @module Tools/base/Cloner - Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.
+*/
+
+/**
+ * @file Cloner.s.
+ */
+
 if( typeof module !== 'undefined' )
 {
 
