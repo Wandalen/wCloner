@@ -7,13 +7,13 @@
   "contributors": [
     {
       "name": "Kostiantyn Wandalen",
-      "email": "wanalen@willbe.so>"
+      "email": "wanalen@willbe.so"
     }
   ],
   "license": "MIT",
-  "main": "staging/dwtools/abase/layer4/Cloner.s",
+  "main": "staging/dwtools/abase/layer5/Cloner.s",
   "files": [
-    "staging/dwtools/abase/layer4",
+    "staging/dwtools/abase/layer5",
     "production"
   ],
   "scripts": {
