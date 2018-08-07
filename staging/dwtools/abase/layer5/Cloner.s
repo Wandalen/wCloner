@@ -74,12 +74,20 @@ function _cloneMapUp( it )
     return;
   }
 
+  /* definition */
+
+  if( _.definitionIs( it.src ) )
+  {
+    it.dst = it.src;
+    // debugger;
+    return false;
+  }
 
   /* map */
 
   var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
 
-  if( !mapLike && !_.construction.is( it.src ) )
+  if( !mapLike && !_.construction.is( it.src ) ) /* ttt */
   {
     debugger;
     throw _.err
@@ -260,6 +268,12 @@ _cloner.defaults = Object.create( _._traverser.defaults );
 function _cloneAct( it )
 {
   _.assert( arguments.length === 1, 'expects single argument' );
+
+  // ttt
+  // if( it.technique === 'object' )
+  // if( it.src && _.routineIs( it.src.clone ) )
+  // return it.src.clone();
+
   return _._traverseAct( it );
 }
 
