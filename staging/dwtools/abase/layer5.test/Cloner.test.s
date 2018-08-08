@@ -21,16 +21,16 @@ if( typeof module !== 'undefined' )
     if( !toolsExternal )
     require( toolsPath );
   }
-
-  var _global = _global_; var _ = _global_.wTools;
+  var _global = _global_;
+  var _ = _global_.wTools;
 
   require( '../layer5/Cloner.s' );
 
   _.include( 'wTesting' );
 
 }
-
-var _global = _global_; var _ = _global_.wTools;
+var _global = _global_;
+var _ = _global_.wTools;
 
 //
 
