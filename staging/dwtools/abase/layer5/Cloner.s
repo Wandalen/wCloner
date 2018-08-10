@@ -530,7 +530,7 @@ cloneDataSeparatingBuffers.defaults =
 cloneDataSeparatingBuffers.defaults.__proto__ = cloneData.defaults;
 
 // --
-// define class
+// declare
 // --
 
 var Proto =
