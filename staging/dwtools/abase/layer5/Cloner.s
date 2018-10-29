@@ -56,7 +56,8 @@ function _cloneMapUp( it )
   if( it.copyingDegree === 1 )
   {
     it.dst = it.src;
-    return false;
+    return _.dont;
+    // return false;
   }
 
   /* copiers */
@@ -80,7 +81,8 @@ function _cloneMapUp( it )
   {
     it.dst = it.src;
     // debugger;
-    return false;
+    // return false;
+    return _.dont;
   }
 
   /* map */
@@ -115,15 +117,16 @@ function _cloneMapUp( it )
     it.dst = _.entityMake( it.src );
   }
 
+  return it;
 }
 
 //
 
-function _cloneMapElementUp( it,eit )
+function _cloneMapElementUp( it, eit )
 {
   var key = eit.key;
 
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.assert( it.iterator === eit.iterator );
   _.assert( it.copyingDegree > 1 );
 
@@ -141,16 +144,17 @@ function _cloneMapElementUp( it,eit )
     eit.cloningWithSetter = 1;
   }
 
+  return eit;
 }
 
 //
 
-function _cloneMapElementDown( it,eit )
+function _cloneMapElementDown( it, eit )
 {
   var key = eit.key;
   var val = eit.dst;
 
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.assert( it.iterator === eit.iterator );
 
   it.dst[ key ] = val;
@@ -166,6 +170,7 @@ function _cloneMapElementDown( it,eit )
     _.assert( _.primitiveIs( eit.src ) || it.dst[ key ] !== eit.src, errd );
   }
 
+  return eit;
 }
 
 //
@@ -181,7 +186,8 @@ function _cloneArrayUp( it )
   if( it.copyingDegree === 1 )
   {
     it.dst = it.src;
-    return false;
+    return _.dont; 
+    // return false;
   }
 
   if( it.dst )
@@ -197,32 +203,35 @@ function _cloneArrayUp( it )
     // it.dst = _.longMakeSimilar( it.src );
   }
 
+  return it;
 }
 
 //
 
-function _cloneArrayElementUp( it,eit )
+function _cloneArrayElementUp( it, eit )
 {
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
+  return eit;
 }
 
 //
 
-function _cloneArrayElementDown( it,eit )
+function _cloneArrayElementDown( it, eit )
 {
 
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
 
   it.dst.push( eit.dst );
 
+  return eit;
 }
 
 //
 
-function _cloneBufferUp( src,it )
+function _cloneBufferUp( src, it )
 {
 
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.assert( it.copyingDegree >= 1 );
 
   if( it.copyingDegree >= 2 )
@@ -234,6 +243,7 @@ function _cloneBufferUp( src,it )
     it.dst = it.src;
   }
 
+  return it;
 }
 
 //
@@ -242,7 +252,7 @@ function _cloner( routine,o )
 {
   var routine = routine || _cloner;
 
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.routineOptions( routine,o );
 
   /* */
@@ -366,7 +376,7 @@ function cloneObjectMergingBuffers( o )
   optionsForCloneObject.onString = function onString( strString,it )
   {
 
-    _.assert( arguments.length === 2, 'expects exactly two arguments' );
+    _.assert( arguments.length === 2, 'Expects exactly two arguments' );
 
     var id = _.strUnjoin( strString,[ '--buffer-->',_.strUnjoin.any,'<--buffer--' ] )
 
@@ -390,7 +400,7 @@ function cloneObjectMergingBuffers( o )
   optionsForCloneObject.onInstanceCopy = function onInstanceCopy( src,it )
   {
 
-    _.assert( arguments.length === 2, 'expects exactly two arguments' );
+    _.assert( arguments.length === 2, 'Expects exactly two arguments' );
 
     var newIt = it.iterationClone();
     newIt.dst = null;
@@ -459,7 +469,7 @@ function cloneDataSeparatingBuffers( o )
   o.onBuffer = function onBuffer( srcBuffer,it )
   {
 
-    _.assert( arguments.length === 2, 'expects exactly two arguments' );
+    _.assert( arguments.length === 2, 'Expects exactly two arguments' );
     _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
 
     var index = buffers.length;
