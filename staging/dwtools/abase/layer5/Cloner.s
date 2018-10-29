@@ -49,7 +49,7 @@ _.assert( !!_._traverser );
 function _cloneMapUp( it )
 {
 
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   /* low copy degree */
 
@@ -178,7 +178,7 @@ function _cloneMapElementDown( it, eit )
 function _cloneArrayUp( it )
 {
 
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( it.copyingDegree >= 1 );
 
   /* low copy degree */
@@ -277,7 +277,7 @@ _cloner.defaults = Object.create( _._traverser.defaults );
 
 function _cloneAct( it )
 {
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   // ttt
   // if( it.technique === 'object' )
@@ -293,7 +293,7 @@ function _clone( o )
 {
   var it = _cloner( _clone,o );
   _.assert( !it.iterator.src || !!it.iterator.rootSrc );
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   return _cloneAct( it );
 }
 
@@ -306,7 +306,7 @@ _clone.iterationDefaults = _cloner.iterationDefaults;
 
 function cloneJust( src )
 {
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   var o = Object.create( null );
   o.src = src;
@@ -462,7 +462,7 @@ function cloneDataSeparatingBuffers( o )
   var offset = 0;
 
   _.routineOptions( cloneDataSeparatingBuffers,o );
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   /* onBuffer */
 
