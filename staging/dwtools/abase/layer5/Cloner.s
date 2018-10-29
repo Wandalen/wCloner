@@ -243,7 +243,7 @@ function _cloneBufferUp( src, it )
     it.dst = it.src;
   }
 
-  return it;
+  // return it;
 }
 
 //
