@@ -186,7 +186,7 @@ function _cloneArrayUp( it )
   if( it.copyingDegree === 1 )
   {
     it.dst = it.src;
-    return _.dont; 
+    return _.dont;
     // return false;
   }
 
