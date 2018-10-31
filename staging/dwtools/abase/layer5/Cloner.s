@@ -160,7 +160,11 @@ function _cloneMapElementDown( it, eit )
 
   if( it.compact )
   {
-    val = eit.dst = it.compactField( it, eit );
+
+    // if( _.strEnds( eit.path, 'maskDirectory' ) && it.compact )
+    // debugger;
+
+    val = eit.dst = it.onCompactField( it, eit );
     if( val === undefined )
     return eit;
   }
