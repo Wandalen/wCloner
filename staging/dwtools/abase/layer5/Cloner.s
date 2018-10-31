@@ -129,6 +129,7 @@ function _cloneMapElementUp( it, eit )
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.assert( it.iterator === eit.iterator );
   _.assert( it.copyingDegree > 1 );
+  _.assert( !_.primitiveIs( it.dst ) );
 
   if( Config.debug )
   {
@@ -157,9 +158,17 @@ function _cloneMapElementDown( it, eit )
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.assert( it.iterator === eit.iterator );
 
+  if( it.compact )
+  {
+    val = eit.dst = it.compactField( it, eit );
+    if( val === undefined )
+    return eit;
+  }
+
   it.dst[ key ] = val;
 
   if( eit.cloningWithSetter )
+  if( Config.debug )
   {
     var errd = 'Component setter "' + key + '" of object "' + it.dst.constructor.name + '" didn\'t copy data, but had to.';
     if( !( _.primitiveIs( eit.src ) || it.dst[ key ] !== eit.src ) )
@@ -218,11 +227,8 @@ function _cloneArrayElementUp( it, eit )
 
 function _cloneArrayElementDown( it, eit )
 {
-
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
-
   it.dst.push( eit.dst );
-
   return eit;
 }
 
