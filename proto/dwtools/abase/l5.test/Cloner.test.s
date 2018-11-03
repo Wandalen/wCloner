@@ -24,7 +24,7 @@ if( typeof module !== 'undefined' )
   var _global = _global_;
   var _ = _global_.wTools;
 
-  require( '../layer5/Cloner.s' );
+  require( '../l5/Cloner.s' );
 
   _.include( 'wTesting' );
 
@@ -182,7 +182,7 @@ function trivial( t )
 var Self =
 {
 
-  name : 'Tools/base/layer5/Cloner',
+  name : 'Tools/base/l5/Cloner',
   silencing : 1,
 
   tests :
@@ -199,6 +199,6 @@ var Self =
 
 Self = wTestSuite( Self );
 if( typeof module !== 'undefined' && !module.parent )
-_.Tester.test( Self.name );
+/*_.*/wTester.test( Self.name );
 
 } )( );

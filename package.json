@@ -11,13 +11,13 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/dwtools/abase/layer5/Cloner.s",
+  "main": "proto/dwtools/abase/l5/Cloner.s",
   "files": [
-    "staging/dwtools/abase/layer5",
+    "proto/dwtools/abase/l5",
     "production"
   ],
   "scripts": {
-    "test": "wtest staging",
+    "test": "wtest proto",
     "make_doc": "x"
   },
   "repository": {
