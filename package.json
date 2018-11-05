@@ -14,7 +14,7 @@
   "main": "proto/dwtools/abase/l5/Cloner.s",
   "files": [
     "proto/dwtools/abase/l5",
-    "production"
+    "proto/dwtools/Tools.s", "production"
   ],
   "scripts": {
     "test": "wtest proto",
