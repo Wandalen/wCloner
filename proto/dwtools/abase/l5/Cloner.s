@@ -483,7 +483,7 @@ function cloneDataSeparatingBuffers( o )
     _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
 
     var index = buffers.length;
-    var id = _.strJoin( '--buffer-->',index,'<--buffer--' );
+    var id = _.strJoin([ '--buffer-->',index,'<--buffer--' ]);
     var bufferSize = srcBuffer ? srcBuffer.length*srcBuffer.BYTES_PER_ELEMENT : 0;
     size += bufferSize;
 
