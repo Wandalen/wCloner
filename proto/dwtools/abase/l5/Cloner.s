@@ -169,6 +169,8 @@ function _cloneMapElementDown( it, eit )
     return eit;
   }
 
+  // if( key === 'srcFilter' && val && val.formed === 1 )
+  // debugger;
   it.dst[ key ] = val;
 
   if( eit.cloningWithSetter )
