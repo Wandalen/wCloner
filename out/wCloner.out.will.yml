@@ -5,7 +5,7 @@ about:
     Collection of routines to copy / clone data structures, no matter how
     complex and cycled them are. Cloner relies on class relations definition for
     traversing. Use the module to replicate your data.
-  version: 0.3.65
+  version: 0.3.66
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -81,7 +81,7 @@ path:
 submodule: {}
 reflector:
   reflect.proto.0:
-    reflectMap:
+    filePath:
       ./proto: ./out.release
     srcFilter:
       maskAll:
@@ -105,7 +105,7 @@ reflector:
     inherit:
       - predefined.*
   reflect.proto.1:
-    reflectMap:
+    filePath:
       ./proto: ./out.debug
     srcFilter:
       maskAll:
@@ -151,15 +151,14 @@ reflector:
     inherit:
       - predefined.*
   exported.0:
-    reflectMap:
-      ./proto: true
+    filePath: ./proto
     srcFilter:
       prefixPath: .
     dstFilter:
       prefixPath: .
   exportedFiles.0:
     recursive: 0
-    reflectMap:
+    filePath:
       ./dwtools/Tools.s: true
       ./dwtools/abase/l5/Cloner.s: true
       ./dwtools/abase/l5.test/Cloner.test.s: true
@@ -270,7 +269,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.65
+    version: 0.3.66
     criterion:
       default: 1
       debug: 1
