@@ -96,7 +96,7 @@ function _cloneMapUp( it )
     (
       'Complex objets should have ' +
       ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' ) +
-      ', but object ' + _.strTypeOf( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method','\n',
+      ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method','\n',
       it.src,'\n',
       'try to mixin wCopyable'
     );
@@ -215,7 +215,7 @@ function _cloneArrayUp( it )
   else
   {
     it.dst = [];
-    // it.dst = _.longMakeSimilar( it.src );
+    // it.dst = _.longMake( it.src );
   }
 
   return it;
