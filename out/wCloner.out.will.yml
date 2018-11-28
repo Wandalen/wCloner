@@ -163,8 +163,8 @@ reflector:
       ./dwtools/abase/l5/Cloner.s: true
       ./dwtools/abase/l5.test/Cloner.test.s: true
     srcFilter:
-      basePath: ./proto
-      prefixPath: .
+      basePath: .
+      prefixPath: proto
     dstFilter:
       basePath: .
       prefixPath: .
