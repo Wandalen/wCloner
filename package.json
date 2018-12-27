@@ -33,8 +33,7 @@
     "wtraverser": ""
   },
   "devDependencies": {
-    "wTesting": "",
-    "wcloner": "."
+    "wTesting": ""
   },
   "keywords": [
     "wTools",
