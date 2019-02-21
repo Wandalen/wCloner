@@ -323,14 +323,10 @@ cloneJust.defaults.__proto__ = _clone.defaults;
 
 function cloneObject( o )
 {
-
   if( o.rootSrc === undefined )
   o.rootSrc = o.src;
-
   _.routineOptions( cloneObject,o );
-
   var result = _clone( o );
-
   return result;
 }
 
