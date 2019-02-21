@@ -5,7 +5,7 @@ about:
     Collection of routines to copy / clone data structures, no matter how
     complex and cycled them are. Cloner relies on class relations definition for
     traversing. Use the module to replicate your data.
-  version: 0.3.82
+  version: 0.3.84
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -284,7 +284,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.82
+    version: 0.3.84
     criterion:
       default: 1
       debug: 1
