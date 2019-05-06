@@ -21,8 +21,8 @@ execution :
 
 path :
 
-  repository : git+https://github.com/Wandalen/wCloner.git
-  bugs : https://github.com/Wandalen/wCloner/issues
+  repository : git+https:///github.com/Wandalen/wCloner.git
+  bugs : https:///github.com/Wandalen/wCloner/issues
 
 step :
 
