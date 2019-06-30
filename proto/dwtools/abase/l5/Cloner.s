@@ -570,25 +570,25 @@ cloneDataSeparatingBuffers.defaults.__proto__ = cloneData.defaults;
 var Proto =
 {
 
-  _cloneMapUp : _cloneMapUp,
-  _cloneMapElementUp : _cloneMapElementUp,
-  _cloneMapElementDown : _cloneMapElementDown,
-  _cloneArrayUp : _cloneArrayUp,
-  _cloneArrayElementUp : _cloneArrayElementUp,
-  _cloneArrayElementDown : _cloneArrayElementDown,
-  _cloneBufferUp : _cloneBufferUp,
+  /*ttt*/_cloneMapUp,
+  /*ttt*/_cloneMapElementUp,
+  /*ttt*/_cloneMapElementDown,
+  /*ttt*/_cloneArrayUp,
+  /*ttt*/_cloneArrayElementUp,
+  /*ttt*/_cloneArrayElementDown,
+  /*ttt*/_cloneBufferUp,
 
-  _cloner : _cloner,
-  _cloneAct : _cloneAct,
-  _clone : _clone,
+  /*ttt*/_cloner,
+  /*ttt*/_cloneAct,
+  /*ttt*/_clone,
 
   //
 
-  cloneJust : cloneJust,
-  cloneObject : cloneObject,
-  cloneObjectMergingBuffers : cloneObjectMergingBuffers, /* experimental */
-  cloneData : cloneData,
-  cloneDataSeparatingBuffers : cloneDataSeparatingBuffers, /* experimental */
+  /*ttt*/cloneJust,
+  /*ttt*/cloneObject,
+  /*ttt*/cloneObjectMergingBuffers, /* experimental */
+  /*ttt*/cloneData,
+  /*ttt*/cloneDataSeparatingBuffers, /* experimental */
 
 }
 

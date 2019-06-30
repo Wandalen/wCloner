@@ -171,8 +171,8 @@ var Self =
   tests :
   {
 
-    checker : checker,
-    trivial : trivial,
+    /*ttt*/checker,
+    /*ttt*/trivial,
 
   }
 
