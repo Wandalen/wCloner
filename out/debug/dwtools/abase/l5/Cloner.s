@@ -49,7 +49,6 @@ function _cloneMapUp( it )
   {
     it.dst = it.src;
     return _.dont;
-    // return false;
   }
 
   /* copiers */
@@ -72,8 +71,6 @@ function _cloneMapUp( it )
   if( _.definitionIs( it.src ) )
   {
     it.dst = it.src;
-    // debugger;
-    // return false;
     return _.dont;
   }
 
@@ -152,17 +149,21 @@ function _cloneMapElementDown( it, eit )
 
   if( it.compact )
   {
-
-    // if( _.strEnds( eit.path, 'maskDirectory' ) && it.compact )
-    // debugger;
-
     val = eit.dst = it.onCompactField( it, eit );
     if( val === undefined )
     return eit;
   }
 
-  // if( key === 'srcFilter' && val && val.formed === 1 )
-  // debugger;
+  let copy = _.accessor._propertyCopyGet( it.dst, key );
+  if( copy )
+  copy.call( it.dst, _.accessor.copyIterationMake
+  ({
+    srcInstance : it.src,
+    dstInstance : it.dst,
+    instanceKey : key,
+    value : val,
+  }));
+  else
   it.dst[ key ] = val;
 
   if( eit.cloningWithSetter )
@@ -194,7 +195,6 @@ function _cloneArrayUp( it )
   {
     it.dst = it.src;
     return _.dont;
-    // return false;
   }
 
   if( it.dst )
@@ -207,7 +207,6 @@ function _cloneArrayUp( it )
   else
   {
     it.dst = [];
-    // it.dst = _.longMake( it.src );
   }
 
   return it;
@@ -282,11 +281,6 @@ _cloner.defaults = Object.create( _._traverser.defaults );
 function _cloneAct( it )
 {
   _.assert( arguments.length === 1, 'Expects single argument' );
-
-  // ttt
-  // if( it.technique === 'object' )
-  // if( it.src && _.routineIs( it.src.clone ) )
-  // return it.src.clone();
 
   return _._traverseAct( it );
 }
@@ -570,25 +564,25 @@ cloneDataSeparatingBuffers.defaults.__proto__ = cloneData.defaults;
 var Proto =
 {
 
-  /*ttt*/_cloneMapUp,
-  /*ttt*/_cloneMapElementUp,
-  /*ttt*/_cloneMapElementDown,
-  /*ttt*/_cloneArrayUp,
-  /*ttt*/_cloneArrayElementUp,
-  /*ttt*/_cloneArrayElementDown,
-  /*ttt*/_cloneBufferUp,
+  _cloneMapUp,
+  _cloneMapElementUp,
+  _cloneMapElementDown,
+  _cloneArrayUp,
+  _cloneArrayElementUp,
+  _cloneArrayElementDown,
+  _cloneBufferUp,
 
-  /*ttt*/_cloner,
-  /*ttt*/_cloneAct,
-  /*ttt*/_clone,
+  _cloner,
+  _cloneAct,
+  _clone,
 
   //
 
-  /*ttt*/cloneJust,
-  /*ttt*/cloneObject,
-  /*ttt*/cloneObjectMergingBuffers, /* experimental */
-  /*ttt*/cloneData,
-  /*ttt*/cloneDataSeparatingBuffers, /* experimental */
+  cloneJust,
+  cloneObject,
+  cloneObjectMergingBuffers, /* experimental */
+  cloneData,
+  cloneDataSeparatingBuffers, /* experimental */
 
 }
 
@@ -598,9 +592,9 @@ _.mapExtend( Self, Proto );
 // export
 // --
 
-if( typeof module !== 'undefined' )
-if( _global_.WTOOLS_PRIVATE )
-{ /* delete require.cache[ module.id ]; */ }
+// if( typeof module !== 'undefined' )
+// if( _global_.WTOOLS_PRIVATE )
+// { /* delete require.cache[ module.id ]; */ }
 
 if( typeof module !== 'undefined' && module !== null )
 module[ 'exports' ] = Self;
