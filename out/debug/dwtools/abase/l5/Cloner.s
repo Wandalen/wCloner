@@ -11,7 +11,6 @@
  * @file Cloner.s.
  */
 
-
 /**
  * Collection of routines to copy / clone data structures, no matter how complex and cycled them are.
  * @namespace Tools( module::Cloner )
@@ -85,8 +84,8 @@ function _cloneMapUp( it )
     (
       'Complex objets should have ' +
       ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' ) +
-      ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method','\n',
-      it.src,'\n',
+      ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
+      it.src, '\n',
       'try to mixin wCopyable'
     );
   }
@@ -123,13 +122,13 @@ function _cloneMapElementUp( it, eit )
   if( Config.debug )
   {
     var errd = 'Object does not have ' + key;
-    _.assert( ( key in it.dst ) || Object.isExtensible( it.dst ),errd );
+    _.assert( ( key in it.dst ) || Object.isExtensible( it.dst ), errd );
   }
 
   eit.cloningWithSetter = 0;
   if( !it.iterator.deserializing && eit.copyingDegree > 1 && it.dst._Accessors && it.dst._Accessors[ key ] )
   {
-    _.assert( eit.copyingDegree > 0,'not expected' );
+    _.assert( eit.copyingDegree > 0, 'not expected' );
     eit.copyingDegree = 1;
     eit.cloningWithSetter = 1;
   }
@@ -251,12 +250,12 @@ function _cloneBufferUp( src, it )
 
 //
 
-function _cloner( routine,o )
+function _cloner( routine, o )
 {
   var routine = routine || _cloner;
 
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
-  _.routineOptions( routine,o );
+  _.routineOptions( routine, o );
 
   /* */
 
@@ -268,7 +267,7 @@ function _cloner( routine,o )
   o.onArrayElementDown = [ _._cloneArrayElementDown, o.onArrayElementDown ];
   o.onBuffer = [ _._cloneBufferUp, o.onBuffer ];
 
-  var result = _._traverser( routine,o );
+  var result = _._traverser( routine, o );
 
   return result;
 }
@@ -289,7 +288,7 @@ function _cloneAct( it )
 
 function _clone( o )
 {
-  var it = _cloner( _clone,o );
+  var it = _cloner( _clone, o );
   _.assert( !it.iterator.src || !!it.iterator.rootSrc );
   _.assert( arguments.length === 1, 'Expects single argument' );
   return _cloneAct( it );
@@ -316,7 +315,7 @@ function cloneJust( src )
   var o = Object.create( null );
   o.src = src;
 
-  _.routineOptions( cloneJust,o );
+  _.routineOptions( cloneJust, o );
 
   return _._clone( o );
 }
@@ -343,7 +342,7 @@ function cloneObject( o )
 {
   if( o.rootSrc === undefined )
   o.rootSrc = o.src;
-  _.routineOptions( cloneObject,o );
+  _.routineOptions( cloneObject, o );
   var result = _clone( o );
   return result;
 }
@@ -369,7 +368,7 @@ function cloneObjectMergingBuffers( o )
   if( o.rootSrc === undefined )
   o.rootSrc = o.src;
 
-  _.routineOptions( cloneObjectMergingBuffers,o );
+  _.routineOptions( cloneObjectMergingBuffers, o );
 
   _.assert( _.objectIs( o.src.descriptorsMap ) );
   _.assert( _.bufferRawIs( o.src.buffer ) );
@@ -383,12 +382,12 @@ function cloneObjectMergingBuffers( o )
 
   /* onString */
 
-  optionsForCloneObject.onString = function onString( strString,it )
+  optionsForCloneObject.onString = function onString( strString, it )
   {
 
     _.assert( arguments.length === 2, 'Expects exactly two arguments' );
 
-    var id = _.strUnjoin( strString,[ '--buffer-->',_.strUnjoin.any,'<--buffer--' ] )
+    var id = _.strUnjoin( strString, [ '--buffer-->', _.strUnjoin.any, '<--buffer--' ] )
 
     if( id === undefined )
     return strString;
@@ -400,14 +399,14 @@ function cloneObjectMergingBuffers( o )
     var offset = descriptor[ 'offset' ];
     var size = descriptor[ 'size' ];
     var sizeOfAtom = descriptor[ 'sizeOfAtom' ];
-    var result = bufferConstructor ? new bufferConstructor( buffer,offset,size / sizeOfAtom ) : null;
+    var result = bufferConstructor ? new bufferConstructor( buffer, offset, size / sizeOfAtom ) : null;
 
     it.dst = result;
 
     return result;
   }
 
-  optionsForCloneObject.onInstanceCopy = function onInstanceCopy( src,it )
+  optionsForCloneObject.onInstanceCopy = function onInstanceCopy( src, it )
   {
 
     _.assert( arguments.length === 2, 'Expects exactly two arguments' );
@@ -444,7 +443,7 @@ cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
 
 /**
  * @summary Clones source entity( src ).
- * @description Returns map that is ready for serialization. Can contain maps,arrays and primitives, but don't contain objects or class instances.
+ * @description Returns map that is ready for serialization. Can contain maps, arrays and primitives, but don't contain objects or class instances.
  * @param {} src Entity to clone.
  * @function cloneData
  * @memberof module:Tools/base/Cloner.Tools( module::Cloner )
@@ -453,7 +452,7 @@ cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
 function cloneData( o )
 {
 
-  _.routineOptions( cloneData,o );
+  _.routineOptions( cloneData, o );
 
   var result = _clone( o );
 
@@ -479,19 +478,19 @@ function cloneDataSeparatingBuffers( o )
   var size = 0;
   var offset = 0;
 
-  _.routineOptions( cloneDataSeparatingBuffers,o );
+  _.routineOptions( cloneDataSeparatingBuffers, o );
   _.assert( arguments.length === 1, 'Expects single argument' );
 
   /* onBuffer */
 
-  o.onBuffer = function onBuffer( srcBuffer,it )
+  o.onBuffer = function onBuffer( srcBuffer, it )
   {
 
     _.assert( arguments.length === 2, 'Expects exactly two arguments' );
-    _.assert( _.bufferTypedIs( srcBuffer ),'not tested' );
+    _.assert( _.bufferTypedIs( srcBuffer ), 'not tested' );
 
     var index = buffers.length;
-    var id = _.strJoin([ '--buffer-->',index,'<--buffer--' ]);
+    var id = _.strJoin([ '--buffer-->', index, '<--buffer--' ]);
     var bufferSize = srcBuffer ? srcBuffer.length*srcBuffer.BYTES_PER_ELEMENT : 0;
     size += bufferSize;
 
@@ -519,7 +518,7 @@ function cloneDataSeparatingBuffers( o )
 
   /* sort by atom size */
 
-  descriptorsArray.sort( function( a,b )
+  descriptorsArray.sort( function( a, b )
   {
     return b[ 'sizeOfAtom' ] - a[ 'sizeOfAtom' ];
   });
@@ -541,7 +540,7 @@ function cloneDataSeparatingBuffers( o )
 
     descriptor[ 'offset' ] = offset;
 
-    _.bufferMove( dstBuffer.subarray( offset,offset+bufferSize ),bytes );
+    _.bufferMove( dstBuffer.subarray( offset, offset+bufferSize ), bytes );
 
     offset += bufferSize;
 
