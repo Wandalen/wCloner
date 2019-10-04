@@ -102,7 +102,7 @@ function _cloneMapUp( it )
   }
   else
   {
-    it.dst = _.entityMake( it.src );
+    it.dst = _.entityMakeConstructing( it.src );
   }
 
   return it;
@@ -525,7 +525,7 @@ function cloneDataSeparatingBuffers( o )
 
   /* alloc */
 
-  result.buffer = new ArrayBuffer( size );
+  result.buffer = new BufferRaw( size );
   var dstBuffer = _.bufferBytesGet( result.buffer );
 
   /* copy buffers */
@@ -535,7 +535,7 @@ function cloneDataSeparatingBuffers( o )
 
     var descriptor = descriptorsArray[ b ];
     var buffer = buffers[ descriptor.index ];
-    var bytes = buffer ? _.bufferBytesGet( buffer ) : new Uint8Array();
+    var bytes = buffer ? _.bufferBytesGet( buffer ) : new U8x();
     var bufferSize = descriptor[ 'size' ];
 
     descriptor[ 'offset' ] = offset;

@@ -37,23 +37,23 @@ function checker( t )
   /* array */
 
   t.description = 'different buffer type, same content';
-  var ins1 = new Float32Array([ 1,2,3 ]);
-  var ins2 = new Float64Array([ 1,2,3 ]);
+  var ins1 = new F32x([ 1,2,3 ]);
+  var ins2 = new F64x([ 1,2,3 ]);
   t.is( !_.entityIdentical( ins1,ins2 ) );
 
   t.description = 'different buffer type, same content';
-  var ins1 = new Float32Array([ 1,2,3 ]);
+  var ins1 = new F32x([ 1,2,3 ]);
   var ins2 = [ 1,2,3 ];
   t.is( !_.entityIdentical( ins1,ins2 ) );
 
   t.description = 'same buffer type, different content';
-  var ins1 = new Float32Array([ 1,2,3 ]);
-  var ins2 = new Float32Array([ 3,4,5 ]);
+  var ins1 = new F32x([ 1,2,3 ]);
+  var ins2 = new F32x([ 3,4,5 ]);
   t.is( !_.entityIdentical( ins1,ins2 ) );
 
   t.description = 'different buffer type, same content';
-  var ins1 = new Float32Array([ 1,2,3 ]);
-  var ins2 = new Float32Array([ 1,2,3 ]);
+  var ins1 = new F32x([ 1,2,3 ]);
+  var ins2 = new F32x([ 1,2,3 ]);
   t.is( _.entityIdentical( ins1,ins2 ) );
 
   t.description = 'same array type, same content';
@@ -62,23 +62,23 @@ function checker( t )
   t.is( _.entityIdentical( ins1,ins2 ) );
 
   t.description = 'BufferView, same content';
-  var ins1 = new DataView( new Float32Array([ 1,2,3 ]).buffer );
-  var ins2 = new DataView( new Float32Array([ 1,2,3 ]).buffer );
+  var ins1 = new BufferView( new F32x([ 1,2,3 ]).buffer );
+  var ins2 = new BufferView( new F32x([ 1,2,3 ]).buffer );
   t.is( _.entityIdentical( ins1,ins2 ) );
 
   t.description = 'BufferView, different content';
-  var ins1 = new DataView( new Float32Array([ 1,2,3 ]).buffer );
-  var ins2 = new DataView( new Float32Array([ 3,2,1 ]).buffer );
+  var ins1 = new BufferView( new F32x([ 1,2,3 ]).buffer );
+  var ins2 = new BufferView( new F32x([ 3,2,1 ]).buffer );
   t.is( !_.entityIdentical( ins1,ins2 ) );
 
   t.description = 'BufferRaw, same content';
-  var ins1 = new DataView( new Float32Array([ 1,2,3 ]).buffer );
-  var ins2 = new DataView( new Float32Array([ 1,2,3 ]).buffer );
+  var ins1 = new BufferView( new F32x([ 1,2,3 ]).buffer );
+  var ins2 = new BufferView( new F32x([ 1,2,3 ]).buffer );
   t.is( _.entityIdentical( ins1,ins2 ) );
 
   t.description = 'BufferRaw, different content';
-  var ins1 = new DataView( new Float32Array([ 1,2,3 ]).buffer );
-  var ins2 = new DataView( new Float32Array([ 3,2,1 ]).buffer );
+  var ins1 = new BufferView( new F32x([ 1,2,3 ]).buffer );
+  var ins2 = new BufferView( new F32x([ 3,2,1 ]).buffer );
   t.is( !_.entityIdentical( ins1,ins2 ) );
 
 }
@@ -98,8 +98,8 @@ function trivial( t )
   // var dst = _.cloneJust( src );
   // t.identical( dst,src );
 
-  t.description = 'cloning ArrayBuffer';
-  var src = new ArrayBuffer( 10 );
+  t.description = 'cloning BufferRaw';
+  var src = new BufferRaw( 10 );
   debugger;
   var dst = _.cloneJust( src );
   debugger;
@@ -108,22 +108,22 @@ function trivial( t )
   t.is( dst !== src );
 
   debugger;
-  t.description = 'cloning ArrayBuffer';
-  var src = new Float32Array([ 1,2,3,4 ]).buffer;
+  t.description = 'cloning BufferRaw';
+  var src = new F32x([ 1,2,3,4 ]).buffer;
   var dst = _.cloneJust( src );
   t.identical( dst,src );
   t.is( dst !== src );
   debugger;
 
   t.description = 'cloning TypedBuffer';
-  var src = new Float32Array( 10 );
+  var src = new F32x( 10 );
   var dst = _.cloneJust( src );
   t.identical( dst,src );
-  t.is( dst instanceof Float32Array );
+  t.is( dst instanceof F32x );
   t.is( dst !== src );
 
-  t.description = 'cloning DataView';
-  var src = new DataView( new ArrayBuffer( 10 ) );
+  t.description = 'cloning BufferView';
+  var src = new BufferView( new BufferRaw( 10 ) );
   var dst = _.cloneJust( src );
   t.identical( dst,src );
   t.is( dst !== src );
@@ -165,7 +165,7 @@ function trivial( t )
 var Self =
 {
 
-  name : 'Tools/base/l5/Cloner',
+  name : 'Tools.base.l5.Cloner',
   silencing : 1,
 
   tests :
