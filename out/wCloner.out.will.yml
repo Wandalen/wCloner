@@ -3,18 +3,19 @@ root:
   - wCloner.out
 consistency:
   wCloner.out.will.yml: &ref_0
-    hash: aa14e5424dd15b76751ef6bb8aac29c5
-    size: 38413
+    hash: 86836ba383cf5abf99c814c33625ad75
+    size: 38442
   ../.ex.will.yml: &ref_1
     hash: b1ee4ffc0a9b27d2f6e2dca43104158a
     size: 1872
   ../.im.will.yml: &ref_2
-    hash: f80169c8d37f44f437dee29208eb3b92
-    size: 4928
+    hash: 129262749ea0c60d14f80b0fa9a2ffee
+    size: 5002
 module:
   wCloner.out:
     about:
       name: wCloner
+      org: noorg
       description: >-
         Collection of routines to copy / clone data structures, no matter how
         complex and cycled them are. Cloner relies on class relations definition
@@ -66,9 +67,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wCloner.git'
       origins:
@@ -78,15 +76,15 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wCloner/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: .
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - ../package-lock.json
+          - ../package.json
+          - ../node_modules
       proto:
         path: ../proto
       export:
@@ -151,11 +149,13 @@ module:
         path: '{path::out.*=}/source/Index.s'
       exported.dir.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path: ../proto
       exported.files.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path:
@@ -338,6 +338,7 @@ module:
           prefixPath: ../proto
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
       exported.files.proto.export:
@@ -350,6 +351,7 @@ module:
         recursive: 0
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
     step:
@@ -707,6 +709,7 @@ module:
         opts:
           reflector: 'reflector::exported.proto.export*'
         criterion:
+          generated: 1
           content: proto
           export: 1
         inherit:
@@ -715,6 +718,7 @@ module:
         opts:
           reflector: 'reflector::exported.files.proto.export*'
         criterion:
+          generated: 1
           content: proto
           export: 1
         inherit:
@@ -813,6 +817,7 @@ module:
   ../:
     about:
       name: wCloner
+      org: noorg
       description: >-
         Collection of routines to copy / clone data structures, no matter how
         complex and cycled them are. Cloner relies on class relations definition
@@ -864,9 +869,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wCloner.git'
       origins:
@@ -876,21 +878,21 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wCloner/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: out
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - package-lock.json
+          - package.json
+          - node_modules
       proto:
-        path: ./proto
+        path: proto
       export:
         path: '{path::proto}/**'
       doc:
-        path: ./doc
+        path: doc
       out.raw.debug:
         criterion:
           debug: debug
@@ -1512,6 +1514,6 @@ module:
         hash: b1ee4ffc0a9b27d2f6e2dca43104158a
         size: 1872
       ../.im.will.yml:
-        hash: f80169c8d37f44f437dee29208eb3b92
-        size: 4928
+        hash: 129262749ea0c60d14f80b0fa9a2ffee
+        size: 5002
       wCloner.out.will.yml: *ref_0
