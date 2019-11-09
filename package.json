@@ -17,7 +17,7 @@
   {
     "url" : "https://github.com/Wandalen/wCloner/issues"
   }, 
-  "dependencies" : { "wTools" : "", "wtraverser" : "" }, 
-  "devDependencies" : { "wTesting" : "" }, 
+  "dependencies" : { "wTools" : "alpha", "wtraverser" : "alpha" }, 
+  "devDependencies" : { "wTesting" : "alpha" }, 
   "keywords" : [ "wTools", "clone", "cloner", "deep clone" ]
 }
