@@ -50,6 +50,9 @@ function _cloneMapUp( it )
     return _.dont;
   }
 
+  if( _.routineIs( it.src ) )
+  debugger;
+
   /* copiers */
 
   if( it.down && _.instanceIs( it.down.dst ) && it.down.dst.Copiers && it.down.dst.Copiers[ it.key ] )
