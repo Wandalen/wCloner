@@ -80,7 +80,7 @@ function _cloneMapUp( it )
 
   var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
 
-  if( !mapLike && !_.construction.is( it.src ) ) /* ttt */
+  if( !mapLike && !_.lconstruction.is( it.src ) ) /* ttt */
   {
     debugger;
     throw _.err
