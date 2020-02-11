@@ -6,7 +6,7 @@ Collection of routines to copy / clone data structures, no matter how complex an
 ### Try out
 ```
 npm install
-node sample/Sample.s
+node sample/Sample.js
 ```
 
 
