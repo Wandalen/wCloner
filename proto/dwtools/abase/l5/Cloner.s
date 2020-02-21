@@ -400,7 +400,21 @@ function cloneObjectMergingBuffers( o )
     var descriptor = descriptorsMap[ strString ];
     _.assert( descriptor !== undefined );
 
-    var bufferConstructor = _global[ descriptor[ 'bufferConstructorName' ] ];
+    debugger; /* yyy */
+    let bufferConstructorName = descriptor[ 'bufferConstructorName' ];
+    var bufferConstructor;
+
+    if( bufferConstructorName !== 'null' )
+    {
+      if( _.LongDescriptors[ bufferConstructorName ] )
+      bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
+      else if( _[ bufferConstructorName ] )
+      bufferConstructor = _[ bufferConstructorName ];
+      else if( _global_[ bufferConstructorName ] )
+      bufferConstructor = _global_[ bufferConstructorName ];
+      _.sure( _.routineIs( bufferConstructor ) );
+    }
+
     var offset = descriptor[ 'offset' ];
     var size = descriptor[ 'size' ];
     var sizeOfAtom = descriptor[ 'sizeOfAtom' ];
@@ -499,9 +513,25 @@ function cloneDataSeparatingBuffers( o )
     var bufferSize = srcBuffer ? srcBuffer.length*srcBuffer.BYTES_PER_ELEMENT : 0;
     size += bufferSize;
 
+    let bufferConstructorName;
+    if( srcBuffer ) /* yyy */
+    {
+      let longDescriptor = _.LongTypeToDescriptorsHash.get( srcBuffer.constructor );
+
+      if( longDescriptor )
+      bufferConstructorName = longDescriptor.name;
+      else
+      bufferConstructorName = srcBuffer.constructor.name;
+
+    }
+    else
+    {
+      bufferConstructorName = 'null';
+    }
+
     var descriptor =
     {
-      'bufferConstructorName' : srcBuffer ? srcBuffer.constructor.name : 'null',
+      'bufferConstructorName' : bufferConstructorName,
       'sizeOfAtom' : srcBuffer ? srcBuffer.BYTES_PER_ELEMENT : 0,
       'offset' : -1,
       'size' : bufferSize,
