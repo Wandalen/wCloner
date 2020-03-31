@@ -13,7 +13,7 @@
 
 /**
  * Collection of routines to copy / clone data structures, no matter how complex and cycled them are.
- * @namespace Tools( module::Cloner )
+ * @namespace Tools.Cloner 
  * @augments wTools
  * @memberof module:Tools/base/Cloner
 */
