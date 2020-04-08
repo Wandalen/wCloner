@@ -308,7 +308,8 @@ _clone.iterationDefaults = _cloner.iterationDefaults;
  * @summary Short-cut for clone routine. Clones source entity( src ) with default options.
  * @param {} src Entity to clone.
  * @function cloneJust
- * @memberofs "module:Tools/base/Cloner","module:Tools/base/Fundamental.wTools"
+ * @namespace Tools
+ * @module Tools/base/Cloner
 */
 
 function cloneJust( src )
@@ -338,7 +339,8 @@ cloneJust.defaults.__proto__ = _clone.defaults;
  * If source entity( src ) is instance of a class, then result object will be also an instance of same class.
  * @param {} src Entity to clone.
  * @function cloneObject
- * @memberofs "module:Tools/base/Cloner","module:Tools/base/Fundamental.wTools"
+ * @namespace Tools
+ * @module Tools/base/Cloner
 */
 
 function cloneObject( o )
@@ -463,7 +465,8 @@ cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
  * @description Returns map that is ready for serialization. Can contain maps, arrays and primitives, but don't contain objects or class instances.
  * @param {} src Entity to clone.
  * @function cloneData
- * @memberofs "module:Tools/base/Cloner","module:Tools/base/Fundamental.wTools"
+ * @namespace Tools
+ * @module Tools/base/Cloner
 */
 
 function cloneData( o )
