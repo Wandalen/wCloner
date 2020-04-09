@@ -417,8 +417,8 @@ function cloneObjectMergingBuffers( o )
 
     var offset = descriptor[ 'offset' ];
     var size = descriptor[ 'size' ];
-    var sizeOfAtom = descriptor[ 'sizeOfAtom' ];
-    var result = bufferConstructor ? new bufferConstructor( buffer, offset, size / sizeOfAtom ) : null;
+    var sizeOfScalar = descriptor[ 'sizeOfScalar' ];
+    var result = bufferConstructor ? new bufferConstructor( buffer, offset, size / sizeOfScalar ) : null;
 
     it.dst = result;
 
@@ -532,7 +532,7 @@ function cloneDataSeparatingBuffers( o )
     var descriptor =
     {
       'bufferConstructorName' : bufferConstructorName,
-      'sizeOfAtom' : srcBuffer ? srcBuffer.BYTES_PER_ELEMENT : 0,
+      'sizeOfScalar' : srcBuffer ? srcBuffer.BYTES_PER_ELEMENT : 0,
       'offset' : -1,
       'size' : bufferSize,
       'index' : index,
@@ -555,7 +555,7 @@ function cloneDataSeparatingBuffers( o )
 
   descriptorsArray.sort( function( a, b )
   {
-    return b[ 'sizeOfAtom' ] - a[ 'sizeOfAtom' ];
+    return b[ 'sizeOfScalar' ] - a[ 'sizeOfScalar' ];
   });
 
   /* alloc */
