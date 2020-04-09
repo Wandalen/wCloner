@@ -400,7 +400,6 @@ function cloneObjectMergingBuffers( o )
     var descriptor = descriptorsMap[ strString ];
     _.assert( descriptor !== undefined );
 
-    debugger; /* yyy */
     let bufferConstructorName = descriptor[ 'bufferConstructorName' ];
     var bufferConstructor;
 
