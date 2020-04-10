@@ -9,10 +9,6 @@
 */
 
 /**
- * @file Cloner.s.
- */
-
-/**
  * Collection of routines to copy / clone data structures, no matter how complex and cycled them are.
 */
 
