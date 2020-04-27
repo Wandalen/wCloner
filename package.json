@@ -1,6 +1,6 @@
 {
   "name" : "wcloner",
-  "version" : "0.3.214",
+  "version" : "0.3.215",
   "engine" : "node >= 8.0.0",
   "description" : "Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.",
   "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
