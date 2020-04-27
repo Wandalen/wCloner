@@ -1,23 +1,23 @@
 {
-  "name" : "wcloner", 
-  "version" : "0.3.210", 
-  "engine" : "node >= 8.0.0", 
-  "description" : "Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.", 
-  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>", 
-  "contributors" : 
+  "name" : "wcloner",
+  "version" : "0.3.211",
+  "engine" : "node >= 8.0.0",
+  "description" : "Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.",
+  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "contributors" :
   [
     { "name" : "Kostiantyn Wandalen", "email" : "wanalen@willbe.so" }
-  ], 
-  "license" : "MIT", 
-  "main" : "proto/dwtools/abase/l5/Cloner.s", 
-  "files" : [ "proto/dwtools/abase/l5", "proto/dwtools/Tools.s", "out" ], 
-  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" }, 
-  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wCloner.git" }, 
-  "bugs" : 
+  ],
+  "license" : "MIT",
+  "main" : "proto/dwtools/abase/l5/Cloner.s",
+  "files" : [ "proto/dwtools/abase/l5", "proto/dwtools/Tools.s", "out" ],
+  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" },
+  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wCloner.git" },
+  "bugs" :
   {
     "url" : "https://github.com/Wandalen/wCloner/issues"
-  }, 
-  "dependencies" : { "wTools" : "alpha", "wtraverser" : "alpha" }, 
-  "devDependencies" : { "wTesting" : "alpha" }, 
+  },
+  "dependencies" : { "wTools" : "gamma", "wtraverser" : "gamma" },
+  "devDependencies" : { "wTesting" : "gamma" },
   "keywords" : [ "wTools", "clone", "cloner", "deep clone" ]
 }
