@@ -32,9 +32,9 @@ module:
         - cloner
         - deep clone
       license: MIT
-      author: Kostiantyn Wandalen <wanalen@willbe.so>
+      author: Kostiantyn Wandalen <wanalen@01.school>
       contributors:
-        - Kostiantyn Wandalen <wanalen@willbe.so>
+        - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wcloner
       npm.scripts:
         test: wtest .run proto/**
@@ -834,9 +834,9 @@ module:
         - cloner
         - deep clone
       license: MIT
-      author: Kostiantyn Wandalen <wanalen@willbe.so>
+      author: Kostiantyn Wandalen <wanalen@01.school>
       contributors:
-        - Kostiantyn Wandalen <wanalen@willbe.so>
+        - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wcloner
       npm.scripts:
         test: wtest .run proto/**
