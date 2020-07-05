@@ -160,6 +160,7 @@ module:
           export: 1
         path:
           - ../proto
+          - ../proto/Integration.test.s
           - ../proto/dwtools
           - ../proto/dwtools/Tools.s
           - ../proto/dwtools/abase
@@ -1499,6 +1500,4 @@ module:
       ../.im.will.yml:
         hash: 129262749ea0c60d14f80b0fa9a2ffee
         size: 5002
-      wCloner.out.will.yml:
-        hash: 075202d73e63736ff11e02f79ecddfaa
-        size: 38095
+      wCloner.out.will.yml: *ref_0
