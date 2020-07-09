@@ -1,5 +1,5 @@
 
-# module::Cloner [![Status](https://github.com/Wandalen/wCloner/workflows/Test/badge.svg)](https://github.com/Wandalen/wCloner/actions?query=workflow%3ATest) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+# module::Cloner [![Status](https://github.com/Wandalen/wCloner/workflows/Publish/badge.svg)](https://github.com/Wandalen/wCloner/actions?query=workflow%3APublish) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.
 
