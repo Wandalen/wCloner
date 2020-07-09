@@ -2,10 +2,13 @@ format: outwillfile-2.0
 root:
   - wCloner.out
 consistency:
-  ../.ex.will.yml: &ref_0
+  wCloner.out.will.yml: &ref_0
+    hash: 87a5bf155ff0076b944270c85c78cd2a
+    size: 38266
+  ../.ex.will.yml: &ref_1
     hash: 7bbd0c7285e7748c6d2ca4af93df2dd3
     size: 1873
-  ../.im.will.yml: &ref_1
+  ../.im.will.yml: &ref_2
     hash: 0aa46b7523b9389a1941d7d70e48b8eb
     size: 4999
 module:
@@ -19,21 +22,21 @@ module:
         for traversing. Use the module to replicate your data.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      interpreters:
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
+      keywords:
         - wTools
         - clone
         - cloner
         - deep clone
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: &ref_4
+      contributors:
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wcloner
-      npm.scripts: &ref_5
+      npm.scripts:
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -695,6 +698,24 @@ module:
           content: prime
         inherit:
           - files.transpile
+      exported.proto.export:
+        opts:
+          filePath: 'reflector::exported.proto.export'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
+      exported.files.proto.export:
+        opts:
+          filePath: 'reflector::exported.files.proto.export'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
     build:
       proto.export:
         steps:
@@ -783,8 +804,9 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      wCloner.out.will.yml: *ref_0
+      ../.ex.will.yml: *ref_1
+      ../.im.will.yml: *ref_2
   ../:
     about:
       name: wCloner
@@ -795,13 +817,23 @@ module:
         for traversing. Use the module to replicate your data.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
+      interpreters:
+        - njs >= 10.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      keywords:
+        - wTools
+        - clone
+        - cloner
+        - deep clone
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: *ref_4
+      contributors:
+        - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wcloner
-      npm.scripts: *ref_5
+      npm.scripts:
+        test: wtest .run proto/**
+        docgen: wdocgen .build proto
     path:
       module.willfiles:
         criterion:
@@ -1468,3 +1500,6 @@ module:
       ../.im.will.yml:
         hash: 0aa46b7523b9389a1941d7d70e48b8eb
         size: 4999
+      wCloner.out.will.yml:
+        hash: 87a5bf155ff0076b944270c85c78cd2a
+        size: 38266
