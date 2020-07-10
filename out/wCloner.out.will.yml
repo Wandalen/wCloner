@@ -1500,6 +1500,4 @@ module:
       ../.im.will.yml:
         hash: 0aa46b7523b9389a1941d7d70e48b8eb
         size: 4999
-      wCloner.out.will.yml:
-        hash: 87a5bf155ff0076b944270c85c78cd2a
-        size: 38266
+      wCloner.out.will.yml: *ref_0
