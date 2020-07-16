@@ -20,9 +20,9 @@ if( typeof module !== 'undefined' )
 
 }
 
-var Self = _global_.wTools;
-var _global = _global_;
-var _ = _global_.wTools;
+let Self = _global_.wTools;
+let _global = _global_;
+let _ = _global_.wTools;
 var _ObjectHasOwnProperty = Object.hasOwnProperty;
 
 _.assert( !!_._traverser );
