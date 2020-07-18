@@ -159,7 +159,7 @@ function trivial( t )
 let Self =
 {
 
-  name : 'Tools.base.l5.Cloner',
+  name : 'Tools.l5.Cloner',
   silencing : 1,
 
   tests :
