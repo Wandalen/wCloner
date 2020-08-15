@@ -1,1 +1,23 @@
-{"name":"wcloner","version":"0.3.243","engine":"node >= 10.0.0","description":"Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.","author":"Kostiantyn Wandalen <wanalen@01.school>","contributors":[{"name":"Kostiantyn Wandalen","email":"wanalen@01.school"}],"license":"MIT","main":"proto/wtools/abase/l5/Cloner.s","files":["proto/wtools/abase/l5","proto/wtools/Tools.s","out"],"scripts":{"test":"wtest .run 'proto/**' rapidity:-3","docgen":"wdocgen proto"},"repository":{"type":"git","url":"https://github.com/Wandalen/wCloner.git"},"bugs":{"url":"https://github.com/Wandalen/wCloner/issues"},"dependencies":{"wTools":"alpha","wtraverser":"alpha"},"devDependencies":{"wTesting":"alpha"},"keywords":["wTools","clone","cloner","deep clone"]}
+{
+  "name" : "wcloner",
+  "version" : "0.3.244",
+  "engine" : "node >= 10.0.0",
+  "description" : "Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.",
+  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
+  "contributors" :
+  [
+    { "name" : "Kostiantyn Wandalen", "email" : "wanalen@01.school" }
+  ],
+  "license" : "MIT",
+  "main" : "proto/wtools/abase/l5/Cloner.s",
+  "files" : [ "proto/wtools/abase/l5", "proto/wtools/Tools.s", "out" ],
+  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
+  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wCloner.git" },
+  "bugs" :
+  {
+    "url" : "https://github.com/Wandalen/wCloner/issues"
+  },
+  "dependencies" : { "wTools" : "alpha", "wtraverser" : "alpha" },
+  "devDependencies" : { "wTesting" : "alpha" },
+  "keywords" : [ "wTools", "clone", "cloner", "deep clone" ]
+}
