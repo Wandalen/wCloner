@@ -17,7 +17,7 @@ module:
       name: wCloner
       org: noorg
       description: >-
-        Collection of routines to copy / clone data structures, no matter how
+        Collection of cross-platform routines to copy / clone data structures, no matter how
         complex and cycled them are. Cloner relies on class relations definition
         for traversing. Use the module to replicate your data.
       enabled: 1
@@ -812,7 +812,7 @@ module:
       name: wCloner
       org: noorg
       description: >-
-        Collection of routines to copy / clone data structures, no matter how
+        Collection of cross-platform routines to copy / clone data structures, no matter how
         complex and cycled them are. Cloner relies on class relations definition
         for traversing. Use the module to replicate your data.
       enabled: 1

@@ -3,13 +3,13 @@
 'use strict';
 
 /**
- * Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.
+ * Collection of cross-platform routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.
   @module Tools/base/Cloner
   @extends Tools
 */
 
 /**
- * Collection of routines to copy / clone data structures, no matter how complex and cycled them are.
+ * Collection of cross-platform routines to copy / clone data structures, no matter how complex and cycled them are.
 */
 
 if( typeof module !== 'undefined' )

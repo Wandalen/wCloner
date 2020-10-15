@@ -2,7 +2,7 @@
 about :
 
   name : 'wCloner'
-  description : 'Collection of routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.'
+  description : 'Collection of cross-platform routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.'
   version : '0.4.0'
   enabled : 1
   interpreters :
