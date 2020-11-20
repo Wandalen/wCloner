@@ -102,26 +102,26 @@ function trivial( t )
   var src = new BufferRaw( 10 );
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
   t.description = 'cloning BufferRaw';
   var src = new F32x([ 1, 2, 3, 4 ]).buffer;
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
   t.description = 'cloning TypedBuffer';
   var src = new F32x( 10 );
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst instanceof F32x );
-  t.is( dst !== src );
+  t.true( dst instanceof F32x );
+  t.true( dst !== src );
 
   t.description = 'cloning BufferView';
   var src = new BufferView( new BufferRaw( 10 ) );
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
   t.description = 'cloning Array';
   var src = new Array( 10 );
@@ -132,25 +132,25 @@ function trivial( t )
   var src = [ 1, 2, 3 ];
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
   t.description = 'cloning Map';
   var src = Object.create( null );
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
   t.description = 'cloning Map';
   var src = {};
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
   t.description = 'cloning Map';
   var src = { a : 1, c : 3 };
   var dst = _.cloneJust( src );
   t.identical( dst, src );
-  t.is( dst !== src );
+  t.true( dst !== src );
 
 }
 
