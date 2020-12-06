@@ -150,9 +150,9 @@ function _cloneMapElementDown( it, eit )
     return eit;
   }
 
-  let copy = _.accessor._methodCopyGet( it.dst, key );
+  let copy = _.accessor._methodMoveGet( it.dst, key );
   if( copy )
-  copy.call( it.dst, _.accessor.copyIterationMake
+  copy.call( it.dst, _.accessor.moveItMake
   ({
     srcInstance : it.src,
     dstInstance : it.dst,
