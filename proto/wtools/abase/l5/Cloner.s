@@ -1,4 +1,5 @@
-( function _Cloner_s_() {
+( function _Cloner_s_()
+{
 
 'use strict';
 
@@ -48,16 +49,17 @@ function _cloneMapUp( it )
   debugger;
 
   /* copiers */
+  var copier;
 
   if( it.down && _.instanceIs( it.down.dst ) && it.down.dst.Copiers && it.down.dst.Copiers[ it.key ] )
   {
-    var copier = it.down.dst.Copiers[ it.key ];
+    copier = it.down.dst.Copiers[ it.key ];
     it.dst = copier.call( it.down.dst, it );
     return;
   }
   else if( it.down && _.instanceIs( it.down.src ) && it.down.src.Copiers && it.down.src.Copiers[ it.key ] )
   {
-    var copier = it.down.src.Copiers[ it.key ];
+    copier = it.down.src.Copiers[ it.key ];
     it.dst = copier.call( it.down.src, it );
     return;
   }
@@ -79,9 +81,9 @@ function _cloneMapUp( it )
     debugger;
     throw _.err
     (
-      'Complex objets should have ' +
-      ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' ) +
-      ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
+      'Complex objets should have '
+      + ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' )
+      + ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
       it.src, '\n',
       'try to mixin wCopyable'
     );
@@ -325,7 +327,8 @@ cloneJust.defaults =
   technique : 'object',
 }
 
-cloneJust.defaults.__proto__ = _clone.defaults;
+// cloneJust.defaults.__proto__ = _clone.defaults;
+Object.setPrototypeOf( cloneJust.defaults, _clone.defaults );
 
 //
 
@@ -354,7 +357,8 @@ cloneObject.defaults =
   technique : 'object',
 }
 
-cloneObject.defaults.__proto__ = _clone.defaults;
+// cloneObject.defaults.__proto__ = _clone.defaults;
+Object.setPrototypeOf( cloneObject.defaults, _clone.defaults );
 
 //
 
@@ -451,7 +455,8 @@ cloneObjectMergingBuffers.defaults =
   copyingBuffers : 1,
 }
 
-cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
+// cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
+Object.setPrototypeOf( cloneObjectMergingBuffers.defaults, cloneObject.defaults );
 
 //
 
@@ -480,7 +485,8 @@ cloneData.defaults =
   copyingAssociates : 0,
 }
 
-cloneData.defaults.__proto__ = _clone.defaults;
+// cloneData.defaults.__proto__ = _clone.defaults;
+Object.setPrototypeOf( cloneData.defaults, _clone.defaults );
 
 //
 
@@ -527,11 +533,11 @@ function cloneDataSeparatingBuffers( o )
 
     var descriptor =
     {
-      'bufferConstructorName' : bufferConstructorName,
+      bufferConstructorName,
       'sizeOfScalar' : srcBuffer ? srcBuffer.BYTES_PER_ELEMENT : 0,
       'offset' : -1,
       'size' : bufferSize,
-      'index' : index,
+      index,
     }
 
     buffers.push( srcBuffer );
@@ -585,7 +591,8 @@ cloneDataSeparatingBuffers.defaults =
   copyingBuffers : 1,
 }
 
-cloneDataSeparatingBuffers.defaults.__proto__ = cloneData.defaults;
+// cloneDataSeparatingBuffers.defaults.__proto__ = cloneData.defaults;
+Object.setPrototypeOf( cloneDataSeparatingBuffers.defaults, cloneData.defaults );
 
 // --
 // declare
