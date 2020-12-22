@@ -1,4 +1,5 @@
-( function _Cloner_test_s_( ) {
+( function _Cloner_test_s_( )
+{
 
 'use strict';
 
