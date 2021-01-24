@@ -8,7 +8,7 @@ Collection of cross-platform routines to copy / clone data structures, no matter
 git clone https://github.com/Wandalen/wCloner
 cd wCloner
 npm install
-node sample/Sample.s
+node sample/trivial/Sample.s
 ```
 
 ## To add to your project
