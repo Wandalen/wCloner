@@ -101,7 +101,7 @@ function _cloneMapUp( it )
   }
   else
   {
-    it.dst = _.entityMakeConstructing( it.src );
+    it.dst = _.entity.makeConstructing( it.src );
   }
 
   return it;
