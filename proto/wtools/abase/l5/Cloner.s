@@ -49,8 +49,8 @@ function _cloneMapUp( it )
   debugger;
 
   /* copiers */
-  var copier;
 
+  var copier;
   if( it.down && _.instanceIs( it.down.dst ) && it.down.dst.Copiers && it.down.dst.Copiers[ it.key ] )
   {
     copier = it.down.dst.Copiers[ it.key ];
@@ -78,14 +78,13 @@ function _cloneMapUp( it )
 
   if( !mapLike && !_.lconstruction.is( it.src ) ) /* ttt */
   {
-    debugger;
     throw _.err
     (
       'Complex objets should have '
       + ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' )
       + ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
-      it.src, '\n',
-      'try to mixin wCopyable'
+      it.src,
+      '\ntry to mixin wCopyable'
     );
   }
 
@@ -96,7 +95,6 @@ function _cloneMapUp( it )
   }
   else if( it.proto )
   {
-    debugger;
     it.dst = new it.proto.constructor();
   }
   else
