@@ -16,6 +16,29 @@ if( typeof module !== 'undefined' )
 let _global = _global_;
 let _ = _global_.wTools;
 
+// --
+// tests
+// --
+
+function _cloneMapUpExperiment( test )
+{
+  /* now */
+  test.case = 'clone map from it.src to it.dst';
+  var it = { dst : null, src : { ab : true, cd : undefined } };
+  var got = _._cloneMapUp( it );
+  test.true( got === it );
+  test.identical( got.dst, { ab : true, cd : undefined } );
+
+  /* before */
+  test.case = 'clone map from it.src to it.dst';
+  var it = { dst : null, src : { ab : true, cd : undefined } };
+  var got = _._cloneMapUp( it );
+  test.true( got === it );
+  test.identical( got.dst, {} );
+}
+
+_cloneMapUpExperiment.experimental = 1;
+
 //
 
 function checker( t )
@@ -165,6 +188,7 @@ let Self =
 
   tests :
   {
+    _cloneMapUpExperiment,
 
     checker,
     trivial,
