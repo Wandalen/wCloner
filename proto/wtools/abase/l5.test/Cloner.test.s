@@ -52,7 +52,7 @@ function _cloneMapUp( test )
   };
   var got = _._cloneMapUp( it );
   test.identical( got, it );
-  test.identical( it.dst, { a : 1, b : undefined } );
+  test.identical( it.dst, {} );
   test.true( it.dst !== it.src );
 
   test.case = 'dst - not null, src - empty map, should save dst';
@@ -193,7 +193,7 @@ function _cloneMapUp( test )
   };
   var got = _._cloneMapUp( it );
   test.identical( got, it );
-  test.identical( it.dst, [ 1, 2 ] );
+  test.identical( it.dst, [ undefined, undefined ] );
   test.true( it.dst !== it.src );
 
   test.case = 'dst - not null, src - not a map like, instanceAsMap - 1, should save dst';
@@ -273,27 +273,6 @@ function _cloneMapUp( test )
   var it = { dst : null, src : {}, proto : Object.create( null ) };
   test.shouldThrowErrorSync( () => _._cloneMapUp( it ) );
 }
-
-//
-
-function _cloneMapUpExperiment( test )
-{
-  /* now */
-  test.case = 'clone map from it.src to it.dst';
-  var it = { dst : null, src : { ab : true, cd : undefined } };
-  var got = _._cloneMapUp( it );
-  test.true( got === it );
-  test.identical( got.dst, { ab : true, cd : undefined } );
-
-  /* before */
-  test.case = 'clone map from it.src to it.dst';
-  var it = { dst : null, src : { ab : true, cd : undefined } };
-  var got = _._cloneMapUp( it );
-  test.true( got === it );
-  test.identical( got.dst, {} );
-}
-
-_cloneMapUpExperiment.experimental = 1;
 
 //
 
@@ -428,6 +407,7 @@ function trivial( t )
 
   t.description = 'cloning Map';
   var src = { a : 1, c : 3 };
+  debugger;
   var dst = _.cloneJust( src );
   t.identical( dst, src );
   t.true( dst !== src );
@@ -446,7 +426,6 @@ let Self =
   {
 
     _cloneMapUp,
-    _cloneMapUpExperiment,
 
     checker,
     trivial,
