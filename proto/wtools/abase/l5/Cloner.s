@@ -99,7 +99,8 @@ function _cloneMapUp( it )
   }
   else
   {
-    it.dst = _.entity.shallowClone( it.src );
+    it.dst = _.entity.makeUndefined( it.src );
+    // it.dst = _.entity.shallowClone( it.src );
   }
 
   return it;
