@@ -20,6 +20,32 @@ let _ = _global_.wTools;
 // tests
 // --
 
+function traverseMapWithClonerRoutines( test )
+{
+  var onMapElementUp = ( it, eit ) => eit;
+  var onMapUp = _._cloneMapUp;
+  var onMapElementDown = _._cloneMapElementDown;
+
+  /* */
+
+  test.case = 'before changes in private routine _cloneMapUp';
+  var src =
+  {
+    map : { y : 2, z : undefined },
+    primitive : 'abc',
+    notDefined : undefined
+  };
+  var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
+  var exp =
+  {
+    map : { y : 2 },
+    primitive : 'abc'
+  };
+  test.identical( got, exp );
+}
+
+//
+
 function _cloneMapUp( test )
 {
   test.case = 'dst - null, src - empty map, should be cloned';
@@ -424,6 +450,10 @@ let Self =
 
   tests :
   {
+
+    traverseMapWithClonerRoutines,
+
+    //
 
     _cloneMapUp,
 
