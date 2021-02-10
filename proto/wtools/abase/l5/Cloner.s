@@ -101,6 +101,19 @@ function _cloneMapUp( it )
   {
     it.dst = _.entity.makeUndefined( it.src );
     // it.dst = _.entity.shallowClone( it.src );
+    /* xxx : the previous version was _.entityMakeConstructing.
+       The routine created empty map from any it.src map
+       _.entityMakeConstructing({ a : 1 }); // return : {}
+       The routine _.entity.shallowClone makes clone of the map
+       _.entity.shallowClone({ a : 1 }); // return : { a : 1 }
+
+       Some routines of other modules ( willbe ) uses this private routine directly.
+       The modules use feature with empty map for filtering fields with value `undefined`.
+       See test routine `traverseMapWithClonerRoutines` which demonstrates described behavior
+
+       The fix is using routine _.entity.makeUndefined which have same behavior with _.entityMakeConstructing.
+       _.entity.makeUndefined({ a : 1 }); // return : {}
+    */
   }
 
   return it;
