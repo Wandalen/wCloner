@@ -74,9 +74,9 @@ function _cloneMapUp( it )
 
   /* map */
 
-  var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
+  var mapLike_ = _.mapLike_( it.src ) || it.instanceAsMap;
 
-  if( !mapLike && !_.lconstruction.is( it.src ) ) /* ttt */
+  if( !mapLike_ && !_.lconstruction.is( it.src ) ) /* ttt */
   {
     throw _.err
     (
