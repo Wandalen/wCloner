@@ -49,8 +49,8 @@ function _cloneMapUp( it )
   debugger;
 
   /* copiers */
-  var copier;
 
+  var copier;
   if( it.down && _.instanceIs( it.down.dst ) && it.down.dst.Copiers && it.down.dst.Copiers[ it.key ] )
   {
     copier = it.down.dst.Copiers[ it.key ];
@@ -78,14 +78,13 @@ function _cloneMapUp( it )
 
   if( !mapLike_ && !_.lconstruction.is( it.src ) ) /* ttt */
   {
-    debugger;
     throw _.err
     (
       'Complex objets should have '
       + ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' )
       + ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
-      it.src, '\n',
-      'try to mixin wCopyable'
+      it.src,
+      '\ntry to mixin wCopyable'
     );
   }
 
@@ -96,12 +95,25 @@ function _cloneMapUp( it )
   }
   else if( it.proto )
   {
-    debugger;
     it.dst = new it.proto.constructor();
   }
   else
   {
-    it.dst = _.entity.cloneShallow( it.src );
+    it.dst = _.entity.makeUndefined( it.src );
+    // it.dst = _.entity.shallowClone( it.src );
+    /* xxx : the previous version was _.entityMakeConstructing.
+       The routine created empty map from any it.src map
+       _.entityMakeConstructing({ a : 1 }); // return : {}
+       The routine _.entity.shallowClone makes clone of the map
+       _.entity.shallowClone({ a : 1 }); // return : { a : 1 }
+
+       Some routines of other modules ( willbe ) uses this private routine directly.
+       The modules use feature with empty map for filtering fields with value `undefined`.
+       See test routine `traverseMapWithClonerRoutines` which demonstrates described behavior
+
+       The fix is using routine _.entity.makeUndefined which have same behavior with _.entityMakeConstructing.
+       _.entity.makeUndefined({ a : 1 }); // return : {}
+    */
   }
 
   return it;
