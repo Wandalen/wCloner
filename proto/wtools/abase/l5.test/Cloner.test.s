@@ -38,10 +38,20 @@ function traverseMapWithClonerRoutines( test )
   var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
   var exp =
   {
-    map : { y : 2 },
-    primitive : 'abc'
+    'map' : { 'y' : 2, 'z' : undefined }, 
+    'primitive' : 'abc',
+    'notDefined' : undefined
   };
   test.identical( got, exp );
+  // var exp =
+  // {
+  //   map : { y : 2 },
+  //   primitive : 'abc'
+  // };
+  // test.identical( got, exp );
+
+  /* */
+
 }
 
 //
@@ -70,6 +80,17 @@ function _cloneMapUp( test )
   test.identical( it.dst, 'dst' );
   test.identical( it.src, {} );
 
+  // test.case = 'dst - null, src - map, should be cloned';
+  // var it =
+  // {
+  //   dst : null,
+  //   src : { a : 1, b : undefined },
+  // };
+  // var got = _._cloneMapUp( it );
+  // test.identical( got, it );
+  // test.identical( it.dst, {} );
+  // test.true( it.dst !== it.src );
+
   test.case = 'dst - null, src - map, should be cloned';
   var it =
   {
@@ -78,7 +99,7 @@ function _cloneMapUp( test )
   };
   var got = _._cloneMapUp( it );
   test.identical( got, it );
-  test.identical( it.dst, {} );
+  test.identical( it.dst, { 'a' : 1, 'b' : undefined } );
   test.true( it.dst !== it.src );
 
   test.case = 'dst - not null, src - empty map, should save dst';
@@ -402,6 +423,14 @@ function trivial( t )
   t.true( dst instanceof F32x );
   t.true( dst !== src );
 
+  t.description = 'cloning regexp';
+  var src = /abc/;
+  debugger;
+  var dst = _.cloneJust( src );
+  debugger;
+  t.identical( dst, src );
+  t.true( dst !== src );
+
   t.description = 'cloning BufferView';
   var src = new BufferView( new BufferRaw( 10 ) );
   var dst = _.cloneJust( src );
@@ -433,7 +462,6 @@ function trivial( t )
 
   t.description = 'cloning Map';
   var src = { a : 1, c : 3 };
-  debugger;
   var dst = _.cloneJust( src );
   t.identical( dst, src );
   t.true( dst !== src );

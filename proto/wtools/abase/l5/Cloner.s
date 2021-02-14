@@ -74,10 +74,14 @@ function _cloneMapUp( it )
 
   /* map */
 
-  var mapLike_ = _.mapLike_( it.src ) || it.instanceAsMap;
+  var mapLike = ( _.mapLike( it.src ) || _.objectLikeStandard( it.src ) ) || it.instanceAsMap;
 
-  if( !mapLike_ && !_.lconstruction.is( it.src ) ) /* ttt */
+  if( !mapLike && !_.regexpIs( it.src ) )
+  debugger;
+
+  if( !mapLike && !_.lconstruction.is( it.src ) ) /* ttt */
   {
+    debugger;
     throw _.err
     (
       'Complex objets should have '
@@ -99,8 +103,11 @@ function _cloneMapUp( it )
   }
   else
   {
+    if( _.objectLikeStandard( it.src ) )
+    it.dst = _.entity.cloneShallow( it.src );
+    else
     it.dst = _.entity.makeUndefined( it.src );
-    // it.dst = _.entity.shallowClone( it.src );
+    // it.dst = _.entity.cloneShallow( it.src );
     /* xxx : the previous version was _.entityMakeConstructing.
        The routine created empty map from any it.src map
        _.entityMakeConstructing({ a : 1 }); // return : {}
