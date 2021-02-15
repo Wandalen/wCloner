@@ -36,19 +36,18 @@ function traverseMapWithClonerRoutines( test )
     notDefined : undefined
   };
   var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
-  var exp =
-  {
-    'map' : { 'y' : 2, 'z' : undefined }, 
-    'primitive' : 'abc',
-    'notDefined' : undefined
-  };
-  test.identical( got, exp );
   // var exp =
   // {
-  //   map : { y : 2 },
-  //   primitive : 'abc'
+  //   'map' : { 'y' : 2, 'z' : undefined },
+  //   'primitive' : 'abc',
+  //   'notDefined' : undefined
   // };
-  // test.identical( got, exp );
+  var exp =
+  {
+    map : { y : 2 },
+    primitive : 'abc'
+  };
+  test.identical( got, exp );
 
   /* */
 
@@ -80,17 +79,6 @@ function _cloneMapUp( test )
   test.identical( it.dst, 'dst' );
   test.identical( it.src, {} );
 
-  // test.case = 'dst - null, src - map, should be cloned';
-  // var it =
-  // {
-  //   dst : null,
-  //   src : { a : 1, b : undefined },
-  // };
-  // var got = _._cloneMapUp( it );
-  // test.identical( got, it );
-  // test.identical( it.dst, {} );
-  // test.true( it.dst !== it.src );
-
   test.case = 'dst - null, src - map, should be cloned';
   var it =
   {
@@ -99,7 +87,8 @@ function _cloneMapUp( test )
   };
   var got = _._cloneMapUp( it );
   test.identical( got, it );
-  test.identical( it.dst, { 'a' : 1, 'b' : undefined } );
+  // test.identical( it.dst, { 'a' : 1, 'b' : undefined } );
+  test.identical( it.dst, {} );
   test.true( it.dst !== it.src );
 
   test.case = 'dst - not null, src - empty map, should save dst';

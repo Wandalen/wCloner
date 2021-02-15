@@ -103,7 +103,7 @@ function _cloneMapUp( it )
   }
   else
   {
-    if( _.objectLikeStandard( it.src ) )
+    if( _.objectLikeStandard( it.src ) && !_.mapLike( it.src ) )
     it.dst = _.entity.cloneShallow( it.src );
     else
     it.dst = _.entity.makeUndefined( it.src );
