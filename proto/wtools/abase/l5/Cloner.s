@@ -257,7 +257,7 @@ function _cloneBufferUp( src, it )
   if( it.copyingDegree >= 2 )
   {
     // debugger;
-    /* xxx : use _.bufferMake maybe? */
+    /* zzz : use _.bufferMake maybe? */
     it.dst = _._longClone( it.src );
   }
   else
