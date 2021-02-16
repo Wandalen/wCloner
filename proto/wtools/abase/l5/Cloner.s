@@ -74,7 +74,7 @@ function _cloneMapUp( it )
 
   /* map */
 
-  var mapLike = ( _.mapLike( it.src ) || _.objectLikeStandard( it.src ) ) || it.instanceAsMap;
+  var mapLike = _.mapLike( it.src ) || _.objectLikeStandard( it.src ) || it.instanceAsMap;
 
   if( !mapLike && !_.regexpIs( it.src ) )
   debugger;
@@ -107,7 +107,7 @@ function _cloneMapUp( it )
     it.dst = _.entity.cloneShallow( it.src );
     else
     it.dst = _.entity.makeUndefined( it.src );
-    // it.dst = _.entity.cloneShallow( it.src );
+    // it.dst = _.entity.cloneShallow( it.src ); /* yyy */
     /* xxx : the previous version was _.entityMakeConstructing.
        The routine created empty map from any it.src map
        _.entityMakeConstructing({ a : 1 }); // return : {}
