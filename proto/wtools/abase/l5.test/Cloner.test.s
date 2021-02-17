@@ -414,11 +414,9 @@ function trivial( t )
 
   t.description = 'cloning regexp';
   var src = /abc/;
-  debugger;
   var dst = _.cloneJust( src );
-  debugger;
   t.identical( dst, src );
-  t.true( dst !== src );
+  t.true( dst === src );
 
   t.description = 'cloning BufferView';
   var src = new BufferView( new BufferRaw( 10 ) );
