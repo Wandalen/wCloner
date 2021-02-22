@@ -74,7 +74,7 @@ function _cloneMapUp( it )
 
   /* map */
 
-  var mapLike = _.auxiliary.is( it.src ) || _.objectLikeStandard( it.src ) || it.instanceAsMap;
+  var mapLike = _.aux.is( it.src ) || _.objectLikeStandard( it.src ) || it.instanceAsMap;
 
   if( !mapLike && !_.regexpIs( it.src ) )
   debugger;
@@ -103,7 +103,7 @@ function _cloneMapUp( it )
   }
   else
   {
-    if( _.objectLikeStandard( it.src ) && !_.auxiliary.is( it.src ) )
+    if( _.objectLikeStandard( it.src ) && !_.aux.is( it.src ) )
     it.dst = _.entity.cloneShallow( it.src );
     else
     it.dst = _.entity.makeUndefined( it.src );
