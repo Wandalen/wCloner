@@ -86,7 +86,7 @@ function _cloneMapUp( it )
     (
       'Complex objets should have '
       + ( it.iterator.technique === 'data' ? 'traverseData' : 'traverseObject' )
-      + ', but object ' + _.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
+      + ', but object ' + _.entity.strType( it.src ) + ' at ' + ( it.path || '.' ), 'does not have such method', '\n',
       it.src,
       '\ntry to mixin wCopyable'
     );
