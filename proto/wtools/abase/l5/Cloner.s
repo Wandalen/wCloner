@@ -45,8 +45,8 @@ function _cloneMapUp( it )
     return _.dont;
   }
 
-  if( _.routineIs( it.src ) )
-  debugger;
+  // if( _.routineIs( it.src ) )
+  // debugger;
 
   /* copiers */
 
@@ -76,12 +76,11 @@ function _cloneMapUp( it )
 
   var mapLike = _.aux.is( it.src ) || _.objectLikeStandard( it.src ) || it.instanceAsMap;
 
-  if( !mapLike && !_.regexpIs( it.src ) )
-  debugger;
+  // if( !mapLike && !_.regexpIs( it.src ) )
+  // debugger;
 
   if( !mapLike && !_.lconstruction.is( it.src ) ) /* ttt */
   {
-    debugger;
     throw _.err
     (
       'Complex objets should have '
@@ -189,7 +188,6 @@ function _cloneMapElementDown( it, eit )
     var errd = 'Component setter "' + key + '" of object "' + it.dst.constructor.name + '" didn\'t copy data, but had to.';
     if( !( _.primitiveIs( eit.src ) || it.dst[ key ] !== eit.src ) )
     {
-      debugger;
       it.dst[ key ] = val;
     }
     _.assert( _.primitiveIs( eit.src ) || it.dst[ key ] !== eit.src, errd );
@@ -218,7 +216,6 @@ function _cloneArrayUp( it )
   {}
   else if( it.proto )
   {
-    debugger;
     it.dst = new it.proto( it.src.length );
   }
   else
