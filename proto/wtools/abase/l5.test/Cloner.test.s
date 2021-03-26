@@ -13,8 +13,8 @@ if( typeof module !== 'undefined' )
   _.include( 'wTesting' );
 
 }
-let _global = _global_;
-let _ = _global_.wTools;
+const _global = _global_;
+const _ = _global_.wTools;
 
 // --
 // tests
@@ -457,7 +457,7 @@ function trivial( t )
 
 //
 
-let Self =
+const Proto =
 {
 
   name : 'Tools.l5.Cloner',
@@ -481,7 +481,7 @@ let Self =
 
 //
 
-Self = wTestSuite( Self );
+const Self = wTestSuite( Proto );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );
 

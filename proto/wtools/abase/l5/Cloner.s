@@ -21,9 +21,9 @@ if( typeof module !== 'undefined' )
 
 }
 
-let Self = _global_.wTools;
-let _global = _global_;
-let _ = _global_.wTools;
+const Self = _global_.wTools;
+const _global = _global_;
+const _ = _global_.wTools;
 var _ObjectHasOwnProperty = Object.hasOwnProperty;
 
 _.assert( !!_._traverser );
@@ -110,8 +110,8 @@ function _cloneMapUp( it )
     /* xxx : the previous version was _.entityMakeConstructing.
        The routine created empty map from any it.src map
        _.entityMakeConstructing({ a : 1 }); // return : {}
-       The routine _.entity.shallowClone makes clone of the map
-       _.entity.shallowClone({ a : 1 }); // return : { a : 1 }
+       The routine _.entity.cloneShallow makes clone of the map
+       _.entity.cloneShallow({ a : 1 }); // return : { a : 1 }
 
        Some routines of other modules ( willbe ) uses this private routine directly.
        The modules use feature with empty map for filtering fields with value `undefined`.
@@ -398,7 +398,7 @@ function cloneObjectMergingBuffers( o )
 
   /* */
 
-  var optionsForCloneObject = _.mapOnly( o, _.cloneObject.defaults );
+  var optionsForCloneObject = _.mapOnly_( null, o, _.cloneObject.defaults );
   optionsForCloneObject.src = data;
 
   /* onString */
