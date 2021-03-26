@@ -24,7 +24,7 @@ if( typeof module !== 'undefined' )
 const Self = _global_.wTools;
 const _global = _global_;
 const _ = _global_.wTools;
-var _ObjectHasOwnProperty = Object.hasOwnProperty;
+const _ObjectHasOwnProperty = Object.hasOwnProperty;
 
 _.assert( !!_._traverser );
 
@@ -614,7 +614,7 @@ Object.setPrototypeOf( cloneDataSeparatingBuffers.defaults, cloneData.defaults )
 // declare
 // --
 
-var Proto =
+const Proto =
 {
 
   _cloneMapUp,
