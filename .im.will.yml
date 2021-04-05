@@ -80,8 +80,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wCloner/proto/wtools/abase/l5/Cloner.s
-    - /pro/module/wCloner/proto/node_modules/wcloner
+    - proto/wtools/abase/l5/Cloner.s
+    - proto/node_modules/wcloner
 reflector:
   reflect.proto:
     inherit: predefined.*
