@@ -2,15 +2,12 @@ format: outwillfile-2.0
 root:
   - wCloner.out
 consistency:
-  wCloner.out.will.yml: &ref_0
-    hash: f37dc6e5f4865d8149370dfb40b94a63
-    size: 38942
-  ../.ex.will.yml: &ref_1
+  ../.ex.will.yml: &ref_0
     hash: fbf625fdae903b623989478fc1eadfec
     size: 1888
-  ../.im.will.yml: &ref_2
-    hash: e4659a320f702afba79760b3604ffa25
-    size: 5059
+  ../.im.will.yml: &ref_1
+    hash: 7bf66298813f6df8679ee0bd15172a9d
+    size: 5019
 module:
   wCloner.out:
     about:
@@ -23,21 +20,21 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters:
+      interpreters: &ref_2
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords:
+      keywords: &ref_3
         - wTools
         - clone
         - cloner
         - deep clone
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
+      contributors: &ref_4
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wcloner
-      npm.scripts:
+      npm.scripts: &ref_5
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -712,24 +709,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -818,9 +797,8 @@ module:
           content: proto
           export: 1
     consistency:
-      wCloner.out.will.yml: *ref_0
-      ../.ex.will.yml: *ref_1
-      ../.im.will.yml: *ref_2
+      ../.ex.will.yml: *ref_0
+      ../.im.will.yml: *ref_1
   ../:
     about:
       name: wCloner
@@ -832,23 +810,13 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords:
-        - wTools
-        - clone
-        - cloner
-        - deep clone
+      interpreters: *ref_2
+      keywords: *ref_3
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
+      contributors: *ref_4
       npm.name: wcloner
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      npm.scripts: *ref_5
     path:
       module.willfiles:
         criterion:
@@ -1524,6 +1492,5 @@ module:
         hash: fbf625fdae903b623989478fc1eadfec
         size: 1888
       ../.im.will.yml:
-        hash: e4659a320f702afba79760b3604ffa25
-        size: 5059
-      wCloner.out.will.yml: *ref_0
+        hash: 7bf66298813f6df8679ee0bd15172a9d
+        size: 5019
