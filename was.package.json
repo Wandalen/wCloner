@@ -10,7 +10,7 @@
   ],
   "license" : "MIT",
   "main" : "proto/node_modules/wcloner",
-  "files" : [ "proto/wtools/abase/l5", "proto/wtools/Tools.s", "out", "proto/node_modules" ],
+  "files" : [ "proto/wtools/abase/l5", "out", "proto/node_modules" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wCloner.git" },
   "bugs" :
