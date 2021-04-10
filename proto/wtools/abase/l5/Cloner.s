@@ -267,6 +267,25 @@ function _cloneBufferUp( src, it )
 
 //
 
+function _cloneSetUp( src, it )
+{
+
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
+  _.assert( it.copyingDegree >= 1 );
+
+  if( it.copyingDegree >= 2 )
+  {
+    it.dst = new Set([ ... it.src ]);
+  }
+  else
+  {
+    it.dst = it.src;
+  }
+
+}
+
+//
+
 function _cloner( routine, o )
 {
   var routine = routine || _cloner;
@@ -283,6 +302,7 @@ function _cloner( routine, o )
   o.onArrayElementUp = [ _._cloneArrayElementUp, o.onArrayElementUp ];
   o.onArrayElementDown = [ _._cloneArrayElementDown, o.onArrayElementDown ];
   o.onBuffer = [ _._cloneBufferUp, o.onBuffer ];
+  o.onSet = [ _._cloneSetUp, o.onSet ];
 
   var result = _._traverser( routine, o );
 
@@ -624,6 +644,7 @@ const Proto =
   _cloneArrayElementUp,
   _cloneArrayElementDown,
   _cloneBufferUp,
+  _cloneSetUp,
 
   _cloner,
   _cloneAct,

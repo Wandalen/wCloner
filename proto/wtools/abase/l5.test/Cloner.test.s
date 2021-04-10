@@ -453,6 +453,12 @@ function trivial( t )
   t.identical( dst, src );
   t.true( dst !== src );
 
+  t.description = 'cloning Set';
+  var src = new Set([ 1, 3 ]);
+  var dst = _.cloneJust( src );
+  t.identical( dst, src );
+  t.true( dst !== src );
+
 }
 
 //
