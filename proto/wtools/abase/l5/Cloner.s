@@ -29,7 +29,7 @@ const _ObjectHasOwnProperty = Object.hasOwnProperty;
 _.assert( !!_._traverser );
 
 // --
-// routines
+// implementation
 // --
 
 function _cloneMapUp( it )
@@ -79,7 +79,7 @@ function _cloneMapUp( it )
   // if( !mapLike && !_.regexpIs( it.src ) )
   // debugger;
 
-  if( !mapLike && !_.lconstruction.is( it.src ) ) /* ttt */
+  if( !mapLike && !_.lconstruction.is( it.src ) )
   {
     throw _.err
     (
@@ -291,7 +291,7 @@ function _cloner( routine, o )
   var routine = routine || _cloner;
 
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
-  _.routineOptions( routine, o );
+  _.routine.options_( routine, o );
 
   /* */
 
@@ -353,7 +353,7 @@ function cloneJust( src )
   var o = Object.create( null );
   o.src = src;
 
-  _.routineOptions( cloneJust, o );
+  _.routine.options_( cloneJust, o );
 
   return _._clone( o );
 }
@@ -382,7 +382,7 @@ function cloneObject( o )
 {
   if( o.rootSrc === undefined )
   o.rootSrc = o.src;
-  _.routineOptions( cloneObject, o );
+  _.routine.options_( cloneObject, o );
   var result = _clone( o );
   return result;
 }
@@ -409,7 +409,7 @@ function cloneObjectMergingBuffers( o )
   if( o.rootSrc === undefined )
   o.rootSrc = o.src;
 
-  _.routineOptions( cloneObjectMergingBuffers, o );
+  _.routine.options_( cloneObjectMergingBuffers, o );
 
   _.assert( _.objectIs( o.src.descriptorsMap ) );
   _.assert( _.bufferRawIs( o.src.buffer ) );
@@ -508,7 +508,7 @@ Object.setPrototypeOf( cloneObjectMergingBuffers.defaults, cloneObject.defaults 
 function cloneData( o )
 {
 
-  _.routineOptions( cloneData, o );
+  _.routine.options_( cloneData, o );
 
   var result = _clone( o );
 
@@ -535,7 +535,7 @@ function cloneDataSeparatingBuffers( o )
   var size = 0;
   var offset = 0;
 
-  _.routineOptions( cloneDataSeparatingBuffers, o );
+  _.routine.options_( cloneDataSeparatingBuffers, o );
   _.assert( arguments.length === 1, 'Expects single argument' );
 
   /* onBuffer */
@@ -660,7 +660,7 @@ const Proto =
 
 }
 
-_.mapExtend( Self, Proto );
+_.props.extend( Self, Proto );
 
 // --
 // export
