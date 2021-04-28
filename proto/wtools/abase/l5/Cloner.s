@@ -441,8 +441,13 @@ function cloneObjectMergingBuffers( o )
 
     if( bufferConstructorName !== 'null' )
     {
-      if( _.LongDescriptors[ bufferConstructorName ] )
-      bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
+      debugger;
+      _.assert( 0, 'not tested' );
+
+      // if( _.LongDescriptors[ bufferConstructorName ] )
+      // bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
+      if( _.long.toolsNamespacesByType[ bufferConstructorName ] )
+      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].defaultLong.make;
       else if( _[ bufferConstructorName ] )
       bufferConstructor = _[ bufferConstructorName ];
       else if( _global_[ bufferConstructorName ] )
