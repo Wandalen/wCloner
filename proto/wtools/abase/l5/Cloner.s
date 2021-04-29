@@ -411,7 +411,7 @@ function cloneObjectMergingBuffers( o )
 
   _.routine.options_( cloneObjectMergingBuffers, o );
 
-  _.assert( _.objectIs( o.src.descriptorsMap ) );
+  _.assert( _.object.isBasic( o.src.descriptorsMap ) );
   _.assert( _.bufferRawIs( o.src.buffer ) );
   _.assert( o.src.data !== undefined );
   _.assert( arguments.length === 1 )
