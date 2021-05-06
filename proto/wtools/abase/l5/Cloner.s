@@ -447,7 +447,7 @@ function cloneObjectMergingBuffers( o )
       // if( _.LongDescriptors[ bufferConstructorName ] )
       // bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
       if( _.long.toolsNamespacesByType[ bufferConstructorName ] )
-      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].defaultLong.make;
+      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.make;
       else if( _[ bufferConstructorName ] )
       bufferConstructor = _[ bufferConstructorName ];
       else if( _global_[ bufferConstructorName ] )
