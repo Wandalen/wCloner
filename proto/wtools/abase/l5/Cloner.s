@@ -441,7 +441,6 @@ function cloneObjectMergingBuffers( o )
 
     if( bufferConstructorName !== 'null' )
     {
-      debugger;
       _.assert( 0, 'not tested' );
 
       // if( _.LongDescriptors[ bufferConstructorName ] )
