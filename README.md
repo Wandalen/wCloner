@@ -1,5 +1,5 @@
 
-# module::Cloner [![status](https://github.com/Wandalen/wCloner/workflows/publish/badge.svg)](https://github.com/Wandalen/wCloner/actions?query=workflow%3Apublish) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+# module::Cloner [![status](https://github.com/Wandalen/wCloner/workflows/StandardPublish/badge.svg)](https://github.com/Wandalen/wCloner/actions?query=workflow%3AStandardPublish) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Collection of cross-platform routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.
 
@@ -11,7 +11,7 @@ npm install
 node sample/trivial/Sample.s
 ```
 
-## To add to your project
+### To add to your project
 ```
 npm add 'wcloner@alpha'
 ```
