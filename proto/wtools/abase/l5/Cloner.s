@@ -21,7 +21,6 @@ if( typeof module !== 'undefined' )
 
 }
 
-const Self = _global_.wTools;
 const _global = _global_;
 const _ = _global_.wTools;
 const _ObjectHasOwnProperty = Object.hasOwnProperty;
@@ -664,13 +663,13 @@ const Proto =
 
 }
 
-_.props.extend( Self, Proto );
+_.props.extend( _, Proto );
 
 // --
 // export
 // --
 
 if( typeof module !== 'undefined' )
-module[ 'exports' ] = Self;
+module[ 'exports' ] = _;
 
 })();
