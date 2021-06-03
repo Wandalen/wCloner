@@ -463,6 +463,144 @@ function trivial( t )
 
 //
 
+function cloneDataSeparatingBuffersTrivial( test )
+{
+  test.case = 'two empty buffers';
+  var dst = new F32x( [] );
+  var src = new F32x( [] );
+  var got = _.cloneDataSeparatingBuffers({ dst, src });
+  var exp =
+  {
+    data : '--buffer-->0<--buffer--',
+    descriptorsMap :
+    {
+      '--buffer-->0<--buffer--' :
+      {
+        bufferConstructorName : 'F32x',
+        sizeOfScalar : 4,
+        offset : 0,
+        size : 0,
+        index : 0
+      }
+    },
+    buffer : new U8x( [] ).buffer,
+  };
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - empty, src - filled';
+  var dst = new F32x( [] );
+  var src = new F32x([ 1, 2 ]);
+  var got = _.cloneDataSeparatingBuffers({ dst, src });
+  var exp =
+  {
+    data : '--buffer-->0<--buffer--',
+    descriptorsMap :
+    {
+      '--buffer-->0<--buffer--' :
+      {
+        bufferConstructorName : 'F32x',
+        sizeOfScalar : 4,
+        offset : 0,
+        size : 8,
+        index : 0
+      }
+    },
+    buffer : new U8x([ 0, 0, 128, 63, 0, 0, 0, 64 ]).buffer,
+  };
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - filled, src - empty';
+  var dst = new F32x([ 1, 2 ]);
+  var src = new F32x( [] );
+  var got = _.cloneDataSeparatingBuffers({ dst, src });
+  var exp =
+  {
+    data : '--buffer-->0<--buffer--',
+    descriptorsMap :
+    {
+      '--buffer-->0<--buffer--' :
+      {
+        bufferConstructorName : 'F32x',
+        sizeOfScalar : 4,
+        offset : 0,
+        size : 0,
+        index : 0
+      }
+    },
+    buffer : new U8x( [] ).buffer,
+  };
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - filled, src - filled';
+  var dst = new F32x([ 1, 2 ]);
+  var src = new F32x([ 3, 4 ]);
+  var got = _.cloneDataSeparatingBuffers({ dst, src });
+  var exp =
+  {
+    data : '--buffer-->0<--buffer--',
+    descriptorsMap :
+    {
+      '--buffer-->0<--buffer--' :
+      {
+        bufferConstructorName : 'F32x',
+        sizeOfScalar : 4,
+        offset : 0,
+        size : 8,
+        index : 0
+      }
+    },
+    buffer : new U8x([ 0, 0, 64, 64, 0, 0, 128, 64 ]).buffer,
+  };
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - filled, src - filled, different buffer types';
+  var dst = new F32x([ 1, 2 ]);
+  var src = new I16x([ 3, 4 ]);
+  var got = _.cloneDataSeparatingBuffers({ dst, src });
+  var exp =
+  {
+    data : '--buffer-->0<--buffer--',
+    descriptorsMap :
+    {
+      '--buffer-->0<--buffer--' :
+      {
+        bufferConstructorName : 'I16x',
+        sizeOfScalar : 2,
+        offset : 0,
+        size : 4,
+        index : 0
+      }
+    },
+    buffer : new U8x([ 3, 0, 4, 0 ]).buffer,
+  };
+  test.identical( got, exp );
+
+  /* - */
+
+  if( !Config.debug )
+  return;
+
+  test.case = 'without arguments';
+  test.shouldThrowErrorSync( () => _.cloneDataSeparatingBuffers() );
+
+  test.case = 'extra arguments';
+  var o = { src : new U8x(), dst : new U8x() };
+  test.shouldThrowErrorSync( () => _.cloneDataSeparatingBuffers( o, o ) );
+
+  test.case = 'wrong type of options map';
+  test.shouldThrowErrorSync( () => _.cloneDataSeparatingBuffers( 'wrong' ) );
+}
+
+//
+
 const Proto =
 {
 
@@ -480,6 +618,8 @@ const Proto =
 
     checker,
     trivial,
+
+    cloneDataSeparatingBuffersTrivial,
 
   }
 
