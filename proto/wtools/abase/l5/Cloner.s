@@ -440,17 +440,25 @@ function cloneObjectMergingBuffers( o )
 
     if( bufferConstructorName !== 'null' )
     {
-      _.assert( 0, 'not tested' );
-
-      // if( _.LongDescriptors[ bufferConstructorName ] )
-      // bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
       if( _.long.toolsNamespacesByType[ bufferConstructorName ] )
-      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.make;
+      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.InstanceConstructor; /* qqq : for Dmytro : cover */
       else if( _[ bufferConstructorName ] )
       bufferConstructor = _[ bufferConstructorName ];
       else if( _global_[ bufferConstructorName ] )
       bufferConstructor = _global_[ bufferConstructorName ];
       _.sure( _.routineIs( bufferConstructor ) );
+
+      // _.assert( 0, 'not tested' );
+      //
+      // // if( _.LongDescriptors[ bufferConstructorName ] )
+      // // bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
+      // if( _.long.toolsNamespacesByType[ bufferConstructorName ] )
+      // bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.make; /* Dmytro : interface of routines `make` has no offset */
+      // else if( _[ bufferConstructorName ] )
+      // bufferConstructor = _[ bufferConstructorName ];
+      // else if( _global_[ bufferConstructorName ] )
+      // bufferConstructor = _global_[ bufferConstructorName ];
+      // _.sure( _.routineIs( bufferConstructor ) );
     }
 
     var offset = descriptor[ 'offset' ];
