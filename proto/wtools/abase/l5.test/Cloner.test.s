@@ -1,4 +1,4 @@
-( function _Cloner_test_s_( )
+( function _Cloner_test_s_()
 {
 
 'use strict';
@@ -463,6 +463,69 @@ function trivial( t )
 
 //
 
+function cloneObjectMergingBuffersTrivial( test )
+{
+  test.case = 'two empty descriptors';
+  var dst = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [] ) });
+  var src = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [] ) });
+  var got = _.cloneObjectMergingBuffers({ dst, src });
+  var exp = new F32x( [] );
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - empty, src - filled';
+  var dst = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [] ) });
+  var src = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [ 1, 2 ] ) });
+  var got = _.cloneObjectMergingBuffers({ dst, src });
+  var exp = new F32x([ 1, 2 ]);
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - filled, src - empty';
+  var dst = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [ 1, 2 ] ) });
+  var src = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [] ) });
+  var got = _.cloneObjectMergingBuffers({ dst, src });
+  var exp = new F32x( [] );
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - filled, src - filled';
+  var dst = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [ 1, 2 ] ) });
+  var src = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [ 3, 4 ] ) });
+  var got = _.cloneObjectMergingBuffers({ dst, src });
+  var exp = new F32x([ 3, 4 ]);
+  test.identical( got, exp );
+
+  /* */
+
+  test.case = 'dst - filled, src - filled, different buffer types';
+  var dst = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new F32x( [ 1, 2 ] ) });
+  var src = _.cloneDataSeparatingBuffers({ dst : new F32x( [] ), src : new I16x( [ 3, 4 ] ) });
+  var got = _.cloneObjectMergingBuffers({ dst, src });
+  var exp = new I16x([ 3, 4 ]);
+  test.identical( got, exp );
+
+  /* - */
+
+  if( !Config.debug )
+  return;
+
+  test.case = 'without arguments';
+  test.shouldThrowErrorSync( () => _.cloneObjectMergingBuffers() );
+
+  test.case = 'extra arguments';
+  var o = { src : new U8x(), dst : new U8x() };
+  test.shouldThrowErrorSync( () => _.cloneObjectMergingBuffers( o, o ) );
+
+  test.case = 'wrong type of options map';
+  test.shouldThrowErrorSync( () => _.cloneObjectMergingBuffers( 'wrong' ) );
+}
+
+//
+
 function cloneDataSeparatingBuffersTrivial( test )
 {
   test.case = 'two empty buffers';
@@ -619,6 +682,7 @@ const Proto =
     checker,
     trivial,
 
+    cloneObjectMergingBuffersTrivial,
     cloneDataSeparatingBuffersTrivial,
 
   }
@@ -631,4 +695,4 @@ const Self = wTestSuite( Proto );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );
 
-} )( );
+})();
