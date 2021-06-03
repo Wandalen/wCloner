@@ -557,12 +557,19 @@ function cloneDataSeparatingBuffers( o )
     let bufferConstructorName;
     if( srcBuffer ) /* yyy */
     {
-      let longDescriptor = _.LongTypeToDescriptorsHash.get( srcBuffer.constructor );
+      let longDescriptor = _.long.namespaceOf( srcBuffer );
 
       if( longDescriptor )
-      bufferConstructorName = longDescriptor.name;
+      bufferConstructorName = longDescriptor.TypeName;
       else
       bufferConstructorName = srcBuffer.constructor.name;
+
+      // let longDescriptor = _.LongTypeToDescriptorsHash.get( srcBuffer.constructor );
+      //
+      // if( longDescriptor )
+      // bufferConstructorName = longDescriptor.name;
+      // else
+      // bufferConstructorName = srcBuffer.constructor.name;
 
     }
     else
