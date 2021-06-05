@@ -440,17 +440,25 @@ function cloneObjectMergingBuffers( o )
 
     if( bufferConstructorName !== 'null' )
     {
-      _.assert( 0, 'not tested' );
-
-      // if( _.LongDescriptors[ bufferConstructorName ] )
-      // bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
       if( _.long.toolsNamespacesByType[ bufferConstructorName ] )
-      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.make;
+      bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.InstanceConstructor;
       else if( _[ bufferConstructorName ] )
       bufferConstructor = _[ bufferConstructorName ];
       else if( _global_[ bufferConstructorName ] )
       bufferConstructor = _global_[ bufferConstructorName ];
       _.sure( _.routineIs( bufferConstructor ) );
+
+      // _.assert( 0, 'not tested' ); /* Dmytro : tested */
+      //
+      // // if( _.LongDescriptors[ bufferConstructorName ] )
+      // // bufferConstructor = _.LongDescriptors[ bufferConstructorName ].make;
+      // if( _.long.toolsNamespacesByType[ bufferConstructorName ] )
+      // bufferConstructor = _.long.toolsNamespacesByType[ bufferConstructorName ].long.default.make; /* Dmytro : interface of routines `make` has no offset */
+      // else if( _[ bufferConstructorName ] )
+      // bufferConstructor = _[ bufferConstructorName ];
+      // else if( _global_[ bufferConstructorName ] )
+      // bufferConstructor = _global_[ bufferConstructorName ];
+      // _.sure( _.routineIs( bufferConstructor ) );
     }
 
     var offset = descriptor[ 'offset' ];
@@ -492,7 +500,7 @@ function cloneObjectMergingBuffers( o )
 cloneObjectMergingBuffers.defaults =
 {
   copyingBuffers : 1,
-}
+};
 
 // cloneObjectMergingBuffers.defaults.__proto__ = cloneObject.defaults;
 Object.setPrototypeOf( cloneObjectMergingBuffers.defaults, cloneObject.defaults );
@@ -557,12 +565,19 @@ function cloneDataSeparatingBuffers( o )
     let bufferConstructorName;
     if( srcBuffer ) /* yyy */
     {
-      let longDescriptor = _.LongTypeToDescriptorsHash.get( srcBuffer.constructor );
+      let longDescriptor = _.long.namespaceOf( srcBuffer );
 
       if( longDescriptor )
-      bufferConstructorName = longDescriptor.name;
+      bufferConstructorName = longDescriptor.TypeName;
       else
       bufferConstructorName = srcBuffer.constructor.name;
+
+      // let longDescriptor = _.LongTypeToDescriptorsHash.get( srcBuffer.constructor );
+      //
+      // if( longDescriptor )
+      // bufferConstructorName = longDescriptor.name;
+      // else
+      // bufferConstructorName = srcBuffer.constructor.name;
 
     }
     else
