@@ -1,6 +1,6 @@
 {
   "name": "wcloner",
-  "version": "0.3.353",
+  "version": "0.3.354",
   "engine": "node >= 10.0.0",
   "description": "Collection of cross-platform routines to copy / clone data structures, no matter how complex and cycled them are. Cloner relies on class relations definition for traversing. Use the module to replicate your data.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
@@ -31,11 +31,11 @@
     "url": "https://github.com/Wandalen/wCloner/issues"
   },
   "dependencies": {
-    "wtraverser": "latest",
-    "wTools": "latest"
+    "wtraverser": "alpha",
+    "wTools": "alpha"
   },
   "devDependencies": {
-    "wTesting": "latest",
+    "wTesting": "alpha",
     "eslint": "7.1.0"
   },
   "keywords": [
