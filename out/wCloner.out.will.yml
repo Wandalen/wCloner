@@ -3,8 +3,8 @@ root:
   - wCloner.out
 consistency:
   ../will.yml: &ref_0
-    hash: 49a8acf44d05c62a8722e5f351d1edd1
-    size: 6681
+    hash: c854116670614836fb0c5912547df459
+    size: 6540
 module:
   wCloner.out:
     about:
@@ -376,9 +376,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -714,12 +711,6 @@ module:
           - 'step::doc.export'
         criterion:
           content: doc
-          export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
           export: 1
       export:
         steps:
@@ -1075,9 +1066,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -1414,12 +1402,6 @@ module:
         criterion:
           content: doc
           export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
-          export: 1
       export:
         steps:
           - 'build::proto.export'
@@ -1477,5 +1459,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 49a8acf44d05c62a8722e5f351d1edd1
-        size: 6681
+        hash: c854116670614836fb0c5912547df459
+        size: 6540
