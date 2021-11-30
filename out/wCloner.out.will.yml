@@ -3,8 +3,8 @@ root:
   - wCloner.out
 consistency:
   ../will.yml: &ref_0
-    hash: c854116670614836fb0c5912547df459
-    size: 6540
+    hash: 422fe690a0d859cdb42f2175061f443d
+    size: 6548
 module:
   wCloner.out:
     about:
@@ -1459,5 +1459,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: c854116670614836fb0c5912547df459
-        size: 6540
+        hash: 422fe690a0d859cdb42f2175061f443d
+        size: 6548
